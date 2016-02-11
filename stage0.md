@@ -9,8 +9,7 @@ Stage 0 proposals have been presented to the committee and not rejected definiti
 | | [Relationships](http://wiki.ecmascript.org/doku.php?id=strawman:relationships) | Mark Miller & Waldemar Horwat | 0
 |🚀| [`String.prototype.at`](https://github.com/mathiasbynens/String.prototype.at) | Mathias Bynens & Rick Waldron | 0     |
 | | [Structured Clone](https://github.com/dslomov-chromium/ecmascript-structured-clone)       |Dmitry Lomov   |0
-| | [Weak References](http://wiki.ecmascript.org/doku.php?id=strawman:weakreferences) | Mark Miller & Dave Herman | 0
-|🚀| [Object.getOwnPropertyDescriptors](https://gist.github.com/WebReflection/9353781) | Rick Waldron & Andrea Giammarchi | 0
+| | [WeakRefs](https://github.com/tc39/proposal-weakrefs) | Dean Tribble | 0
 |🚀| [Set/Map.prototype.toJSON](https://github.com/DavidBruant/Map-Set.prototype.toJSON) | David Bruant ? | 0
 | | Annex B - HTML Attribute Event Handlers| Allen Wirfs-Brock | 0
 | | [Reflect.isCallable/Reflect.isConstructor](https://github.com/caitp/TC39-Proposals/blob/master/tc39-reflect-isconstructor-iscallable.md)| Caitlin Potter| 0
@@ -21,5 +20,7 @@ Stage 0 proposals have been presented to the committee and not rejected definiti
 |🚀| [Encapsulated private state for objects](https://github.com/wycats/javascript-private-state) | Yehuda Katz & Allen Wirfs-Brock | 0
 | | [Error.isError](https://github.com/ljharb/proposal-is-error) | Jordan Harband | 0
 | | [64-Bit Integer Operations](https://gist.github.com/BrendanEich/4294d5c212a6d2254703) | Brendan Eich | 0
+| | [Method Parameter Decorators](https://goo.gl/r1XT9b) | Igor Minar | 0
+| | [Function Expression Decorators](https://goo.gl/8MmCMG) | Igor Minar | 0
 
 🚀 means the champion thinks it's ready to advance but has not yet presented to the committee.

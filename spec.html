@@ -10,7 +10,7 @@
   }
 </script>
 <pre class=metadata>
-  title: ECMAScript® 2016 Language Specification
+  title: ECMAScript&reg; 2016 Language Specification
   shortname: ECMA-262
   status: draft
   location: https://tc39.github.io/ecma262
@@ -45,7 +45,7 @@
 <emu-clause id="sec-conformance">
   <h1>Conformance</h1>
   <p>A conforming implementation of ECMAScript must provide and support all the types, values, objects, properties, functions, and program syntax and semantics described in this specification.</p>
-  <p>A conforming implementation of ECMAScript must interpret source text input in conformance with the Unicode Standard, Version 5.1.0 or later and ISO/IEC 10646.</p>
+  <p>A conforming implementation of ECMAScript must interpret source text input in conformance with the Unicode Standard, Version 8.0.0 or later and ISO/IEC 10646.</p>
   <p>A conforming implementation of ECMAScript that provides an application programming interface that supports programs that need to adapt to the linguistic and cultural conventions used by different human languages and countries must implement the interface defined by the most recent edition of ECMA-402 that is compatible with this specification.</p>
   <p>A conforming implementation of ECMAScript may provide additional types, values, objects, properties, and functions beyond those described in this specification. In particular, a conforming implementation of ECMAScript may provide properties not described in this specification, and values for those properties, for objects that are described in this specification.</p>
   <p>A conforming implementation of ECMAScript may support program and regular expression syntax not described in this specification. In particular, a conforming implementation of ECMAScript may support program syntax that makes use of the &ldquo;future reserved words&rdquo; listed in subclause <emu-xref href="#sec-future-reserved-words"></emu-xref> of this specification.</p>
@@ -54,7 +54,7 @@
 
 <!-- es6num="3" -->
 <emu-clause id="sec-normative-references">
-  <h1>Normative references</h1>
+  <h1>Normative References</h1>
   <p>The following referenced documents are indispensable for the application of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</p>
   <p>ISO/IEC 10646:2003: <i>Information Technology &ndash; Universal Multiple-Octet Coded Character Set (UCS) plus Amendment 1:2005, Amendment 2:2006, Amendment 3:2008, and Amendment 4:2008</i>, plus additional amendments and corrigenda, or successor</p>
   <p>ECMA-402, <i>ECMAScript 2015 Internationalization API Specification</i>.
@@ -103,7 +103,7 @@
       <p>Even though ECMAScript includes syntax for class definitions, ECMAScript objects are not fundamentally class-based such as those in C++, Smalltalk, or Java. Instead objects may be created in various ways including via a literal notation or via <em>constructors</em> which create objects and then execute code that initializes all or part of them by assigning initial values to their properties. Each constructor is a function that has a property named `"prototype"` that is used to implement <em>prototype-based inheritance</em> and <em>shared properties</em>. Objects are created by using constructors in <b>new</b> expressions; for example, `new Date(2009,11)` creates a new Date object. Invoking a constructor without using <b>new</b> has consequences that depend on the constructor. For example, `Date()` produces a string representation of the current date and time rather than an object.</p>
       <p>Every object created by a constructor has an implicit reference (called the object's <em>prototype</em>) to the value of its constructor's `"prototype"` property. Furthermore, a prototype may have a non-null implicit reference to its prototype, and so on; this is called the <em>prototype chain</em>. When a reference is made to a property in an object, that reference is to the property of that name in the first object in the prototype chain that contains a property of that name. In other words, first the object mentioned directly is examined for such a property; if that object contains the named property, that is the property to which the reference refers; if that object does not contain the named property, the prototype for that object is examined next; and so on.</p>
       <emu-figure id="figure-1" caption="Object/Prototype Relationships">
-        <object data="figure-1.svg" height="354" type="image/svg+xml" width="719"> <img alt="An image of lots of boxes and arrows." height="354" src="figure-1.png" width="719"> </object>
+        <object data="img/figure-1.svg" height="354" type="image/svg+xml" width="719"> <img alt="An image of lots of boxes and arrows." height="354" src="img/figure-1.png" width="719"> </object>
       </emu-figure>
       <p>In a class-based object-oriented language, in general, state is carried by instances, methods are carried by classes, and inheritance is only of structure and behaviour. In ECMAScript, the state and methods are carried by objects, while structure, behaviour, and state are all inherited.</p>
       <p>All objects that do not directly contain a particular property that their prototype contains share that property and its value. Figure 1 illustrates this:</p>
@@ -123,7 +123,7 @@
 
   <!-- es6num="4.3" -->
   <emu-clause id="sec-terms-and-definitions">
-    <h1>Terms and definitions</h1>
+    <h1>Terms and Definitions</h1>
     <p>For the purposes of this document, the following terms and definitions apply.</p>
 
     <!-- es6num="4.3.1" -->
@@ -915,7 +915,7 @@
                 `"Symbol.unscopables"`
               </td>
               <td>
-                An object valued property whose own property names are property names that are excluded from the `with` environment bindings of the associated object.
+                An object valued property whose own and inherited property names are property names that are excluded from the `with` environment bindings of the associated object.
               </td>
             </tr>
             </tbody>
@@ -1451,7 +1451,7 @@
             The Type of the return value must be Boolean.
           </li>
           <li>
-            [[DefineOwnProperty]] must return false if P has previously been observed as a non-configurable own property of the target, unless either:
+            <p>[[DefineOwnProperty]] must return false if P has previously been observed as a non-configurable own property of the target, unless either:</p>
             <ol>
               <li>
                 P is a non-configurable writable own data property. A non-configurable writable data property can be changed into a non-configurable non-writable data property.
@@ -3286,24 +3286,6 @@
             DecimalDigits `.` DecimalDigits? ExponentPart?
             `.` DecimalDigits ExponentPart?
             DecimalDigits ExponentPart?
-
-          DecimalDigits :::
-            DecimalDigit
-            DecimalDigits DecimalDigit
-
-          DecimalDigit ::: one of
-            `0` `1` `2` `3` `4` `5` `6` `7` `8` `9`
-
-          ExponentPart :::
-            ExponentIndicator SignedInteger
-
-          ExponentIndicator ::: one of
-            `e` `E`
-
-          SignedInteger :::
-            DecimalDigits
-            `+` DecimalDigits
-            `-` DecimalDigits
         </emu-grammar>
         <p>All grammar symbols not explicitly defined above have the definitions used in the Lexical Grammar for numeric literals (<emu-xref href="#sec-literals-numeric-literals"></emu-xref>)</p>
         <emu-note>
@@ -6202,7 +6184,7 @@
 
     <!-- es6num="8.4.2" -->
     <emu-clause id="sec-nextjob-result" aoid="NextJob">
-      <h1>NextJob result</h1>
+      <h1>NextJob</h1>
       <p>An algorithm step such as:</p>
       <emu-alg>
         1. NextJob _result_.
@@ -6213,7 +6195,7 @@
       </emu-alg>
       <p>Job abstract operations must not contain a Return step or a ReturnIfAbrupt step. The NextJob _result_ operation is equivalent to the following steps:</p>
       <emu-alg>
-        1. If _result_ is an abrupt completion, perform HostReportErrors(« _result_.[[value]] »).
+        1. If _result_ is an abrupt completion, perform HostReportErrors(&laquo; _result_.[[value]] &raquo;).
         1. Suspend the running execution context and remove it from the execution context stack.
         1. Assert: The execution context stack is now empty.
         1. Let _nextQueue_ be a non-empty Job Queue chosen in an implementation defined manner. If all Job Queues are empty, the result is implementation defined.
@@ -6269,55 +6251,87 @@
     <!-- es6num="9.1.1" -->
     <emu-clause id="sec-ordinary-object-internal-methods-and-internal-slots-getprototypeof">
       <h1>[[GetPrototypeOf]] ( )</h1>
-      <p>When the [[GetPrototypeOf]] internal method of _O_ is called the following steps are taken:</p>
+      <p>When the [[GetPrototypeOf]] internal method of _O_ is called, the following steps are taken:</p>
       <emu-alg>
-        1. Return the value of the [[Prototype]] internal slot of _O_.
+        1. Return ! OrdinaryGetPrototypeOf(_O_).
       </emu-alg>
+
+      <emu-clause id="sec-ordinarygetprototypeof" aoid="OrdinaryGetPrototypeOf">
+        <h1>OrdinaryGetPrototypeOf (_O_)</h1>
+        <p>When the abstract operation OrdinaryGetPrototypeOf is called with Object _O_, the following steps are taken:</p>
+        <emu-alg>
+          1. Return the value of the [[Prototype]] internal slot of _O_.
+        </emu-alg>
+      </emu-clause>
     </emu-clause>
 
     <!-- es6num="9.1.2" -->
     <emu-clause id="sec-ordinary-object-internal-methods-and-internal-slots-setprototypeof-v">
       <h1>[[SetPrototypeOf]] (_V_)</h1>
-      <p>When the [[SetPrototypeOf]] internal method of _O_ is called with argument _V_ the following steps are taken:</p>
+      <p>When the [[SetPrototypeOf]] internal method of _O_ is called with argument _V_, the following steps are taken:</p>
       <emu-alg>
-        1. Assert: Either Type(_V_) is Object or Type(_V_) is Null.
-        1. Let _extensible_ be the value of the [[Extensible]] internal slot of _O_.
-        1. Let _current_ be the value of the [[Prototype]] internal slot of _O_.
-        1. If SameValue(_V_, _current_), return *true*.
-        1. If _extensible_ is *false*, return *false*.
-        1. Let _p_ be _V_.
-        1. Let _done_ be *false*.
-        1. Repeat while _done_ is *false*,
-          1. If _p_ is *null*, let _done_ be *true*.
-          1. Else, if SameValue(_p_, _O_) is *true*, return *false*.
-          1. Else,
-            1. If the [[GetPrototypeOf]] internal method of _p_ is not the ordinary object internal method defined in <emu-xref href="#sec-ordinary-object-internal-methods-and-internal-slots-getprototypeof"></emu-xref>, let _done_ be *true*.
-            1. Else, let _p_ be the value of _p_'s [[Prototype]] internal slot.
-        1. Set the value of the [[Prototype]] internal slot of _O_ to _V_.
-        1. Return *true*.
+        1. Return ! OrdinarySetPrototypeOf(_O_, _V_).
       </emu-alg>
-      <emu-note>
-        <p>The loop in step 8 guarantees that there will be no circularities in any prototype chain that only includes objects that use the ordinary object definitions for [[GetPrototypeOf]] and [[SetPrototypeOf]].</p>
-      </emu-note>
+
+      <emu-clause id="sec-ordinarysetprototypeof" aoid="OrdinarySetPrototypeOf">
+        <h1>OrdinarySetPrototypeOf (_O_, _V_)</h1>
+        <p>When the abstract operation OrdinarySetPrototypeOf is called with Object _O_ and value _V_, the following steps are taken:</p>
+        <emu-alg>
+          1. Assert: Either Type(_V_) is Object or Type(_V_) is Null.
+          1. Let _extensible_ be the value of the [[Extensible]] internal slot of _O_.
+          1. Let _current_ be the value of the [[Prototype]] internal slot of _O_.
+          1. If SameValue(_V_, _current_), return *true*.
+          1. If _extensible_ is *false*, return *false*.
+          1. Let _p_ be _V_.
+          1. Let _done_ be *false*.
+          1. Repeat while _done_ is *false*,
+            1. If _p_ is *null*, let _done_ be *true*.
+            1. Else, if SameValue(_p_, _O_) is *true*, return *false*.
+            1. Else,
+              1. If the [[GetPrototypeOf]] internal method of _p_ is not the ordinary object internal method defined in <emu-xref href="#sec-ordinary-object-internal-methods-and-internal-slots-getprototypeof"></emu-xref>, let _done_ be *true*.
+              1. Else, let _p_ be the value of _p_'s [[Prototype]] internal slot.
+          1. Set the value of the [[Prototype]] internal slot of _O_ to _V_.
+          1. Return *true*.
+        </emu-alg>
+        <emu-note>
+          <p>The loop in step 8 guarantees that there will be no circularities in any prototype chain that only includes objects that use the ordinary object definitions for [[GetPrototypeOf]] and [[SetPrototypeOf]].</p>
+        </emu-note>
+      </emu-clause>
     </emu-clause>
 
     <!-- es6num="9.1.3" -->
     <emu-clause id="sec-ordinary-object-internal-methods-and-internal-slots-isextensible">
       <h1>[[IsExtensible]] ( )</h1>
-      <p>When the [[IsExtensible]] internal method of _O_ is called the following steps are taken:</p>
+      <p>When the [[IsExtensible]] internal method of _O_ is called, the following steps are taken:</p>
       <emu-alg>
-        1. Return the value of the [[Extensible]] internal slot of _O_.
+        1. Return ! OrdinaryIsExtensible(_O_).
       </emu-alg>
+
+      <emu-clause id="sec-ordinaryisextensible" aoid="OrdinaryIsExtensible">
+        <h1>OrdinaryIsExtensible (_O_)</h1>
+        <p>When the abstract operation OrdinaryIsExtensible is called with Object _O_, the following steps are taken:</p>
+        <emu-alg>
+          1. Return the value of the [[Extensible]] internal slot of _O_.
+        </emu-alg>
+      </emu-clause>
     </emu-clause>
 
     <!-- es6num="9.1.4" -->
     <emu-clause id="sec-ordinary-object-internal-methods-and-internal-slots-preventextensions">
       <h1>[[PreventExtensions]] ( )</h1>
-      <p>When the [[PreventExtensions]] internal method of _O_ is called the following steps are taken:</p>
+      <p>When the [[PreventExtensions]] internal method of _O_ is called, the following steps are taken:</p>
       <emu-alg>
-        1. Set the value of the [[Extensible]] internal slot of _O_ to *false*.
-        1. Return *true*.
+        1. Return ! OrdinaryPreventExtensions(_O_).
       </emu-alg>
+
+      <emu-clause id="sec-ordinarypreventextensions" aoid="OrdinaryPreventExtensions">
+        <h1>OrdinaryPreventExtensions (_O_)</h1>
+        <p>When the abstract operation OrdinaryPreventExtensions is called with Object _O_, the following steps are taken:</p>
+        <emu-alg>
+          1. Set the value of the [[Extensible]] internal slot of _O_ to *false*.
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>
     </emu-clause>
 
     <!-- es6num="9.1.5" -->
@@ -6325,7 +6339,7 @@
       <h1>[[GetOwnProperty]] (_P_)</h1>
       <p>When the [[GetOwnProperty]] internal method of _O_ is called with property key _P_, the following steps are taken:</p>
       <emu-alg>
-        1. Return OrdinaryGetOwnProperty(_O_, _P_).
+        1. Return ! OrdinaryGetOwnProperty(_O_, _P_).
       </emu-alg>
 
       <!-- es6num="9.1.5.1" -->
@@ -6455,19 +6469,29 @@
     <!-- es6num="9.1.8" -->
     <emu-clause id="sec-ordinary-object-internal-methods-and-internal-slots-get-p-receiver">
       <h1>[[Get]] (_P_, _Receiver_)</h1>
-      <p>When the [[Get]] internal method of _O_ is called with property key _P_ and ECMAScript language value _Receiver_ the following steps are taken:</p>
+      <p>When the [[Get]] internal method of _O_ is called with property key _P_ and ECMAScript language value _Receiver_, the following steps are taken:</p>
+
       <emu-alg>
-        1. Assert: IsPropertyKey(_P_) is *true*.
-        1. Let _desc_ be ? _O_.[[GetOwnProperty]](_P_).
-        1. If _desc_ is *undefined*, then
-          1. Let _parent_ be ? _O_.[[GetPrototypeOf]]().
-          1. If _parent_ is *null*, return *undefined*.
-          1. Return ? _parent_.[[Get]](_P_, _Receiver_).
-        1. If IsDataDescriptor(_desc_) is *true*, return _desc_.[[Value]].
-        1. Otherwise, IsAccessorDescriptor(_desc_) must be *true* so, let _getter_ be _desc_.[[Get]].
-        1. If _getter_ is *undefined*, return *undefined*.
-        1. Return ? Call(_getter_, _Receiver_).
+        1. Return ? OrdinaryGet(_O_, _P_, _Receiver_).
       </emu-alg>
+
+      <emu-clause id="sec-ordinaryget" aoid="OrdinaryGet">
+        <h1>OrdinaryGet (_O_, _P_, _Receiver_)</h1>
+        <p>When the abstract operation OrdinaryGet is called with Object _O_, property key _P_, and ECMAScript language value _Receiver_, the following steps are taken:</p>
+
+        <emu-alg>
+          1. Assert: IsPropertyKey(_P_) is *true*.
+          1. Let _desc_ be ? _O_.[[GetOwnProperty]](_P_).
+          1. If _desc_ is *undefined*, then
+            1. Let _parent_ be ? _O_.[[GetPrototypeOf]]().
+            1. If _parent_ is *null*, return *undefined*.
+            1. Return ? _parent_.[[Get]](_P_, _Receiver_).
+          1. If IsDataDescriptor(_desc_) is *true*, return _desc_.[[Value]].
+          1. Otherwise, IsAccessorDescriptor(_desc_) must be *true* so, let _getter_ be _desc_.[[Get]].
+          1. If _getter_ is *undefined*, return *undefined*.
+          1. Return ? Call(_getter_, _Receiver_).
+        </emu-alg>
+      </emu-clause>
     </emu-clause>
 
     <!-- es6num="9.1.9" -->
@@ -6475,46 +6499,63 @@
       <h1>[[Set]] ( _P_, _V_, _Receiver_)</h1>
       <p>When the [[Set]] internal method of _O_ is called with property key _P_, value _V_, and ECMAScript language value _Receiver_, the following steps are taken:</p>
       <emu-alg>
-        1. Assert: IsPropertyKey(_P_) is *true*.
-        1. Let _ownDesc_ be ? _O_.[[GetOwnProperty]](_P_).
-        1. If _ownDesc_ is *undefined*, then
-          1. Let _parent_ be ? _O_.[[GetPrototypeOf]]().
-          1. If _parent_ is not *null*, then
-            1. Return ? _parent_.[[Set]](_P_, _V_, _Receiver_).
-          1. Else,
-            1. Let _ownDesc_ be the PropertyDescriptor{[[Value]]: *undefined*, [[Writable]]: *true*, [[Enumerable]]: *true*, [[Configurable]]: *true*}.
-        1. If IsDataDescriptor(_ownDesc_) is *true*, then
-          1. If _ownDesc_.[[Writable]] is *false*, return *false*.
-          1. If Type(_Receiver_) is not Object, return *false*.
-          1. Let _existingDescriptor_ be ? _Receiver_.[[GetOwnProperty]](_P_).
-          1. If _existingDescriptor_ is not *undefined*, then
-            1. If IsAccessorDescriptor(_existingDescriptor_) is *true*, return *false*.
-            1. If _existingDescriptor_.[[Writable]] is *false*, return *false*.
-            1. Let _valueDesc_ be the PropertyDescriptor{[[Value]]: _V_}.
-            1. Return ? _Receiver_.[[DefineOwnProperty]](_P_, _valueDesc_).
-          1. Else _Receiver_ does not currently have a property _P_,
-            1. Return ? CreateDataProperty(_Receiver_, _P_, _V_).
-        1. Assert: IsAccessorDescriptor(_ownDesc_) is *true*.
-        1. Let _setter_ be _ownDesc_.[[Set]].
-        1. If _setter_ is *undefined*, return *false*.
-        1. Let _setterResult_ be ? Call(_setter_, _Receiver_, &laquo; _V_ &raquo;).
-        1. Return *true*.
+        1. Return ? OrdinarySet(_O_, _P_, _V_, _Receiver_).
       </emu-alg>
+
+      <emu-clause id="sec-ordinaryset" aoid="OrdinarySet">
+        <h1>OrdinarySet (_O_, _P_, _V_, _Receiver_)</h1>
+        <p>When the abstract operation OrdinarySet is called with Object _O_, property key _P_, value _V_, and ECMAScript language value _Receiver_, the following steps are taken:</p>
+
+        <emu-alg>
+          1. Assert: IsPropertyKey(_P_) is *true*.
+          1. Let _ownDesc_ be ? _O_.[[GetOwnProperty]](_P_).
+          1. If _ownDesc_ is *undefined*, then
+            1. Let _parent_ be ? _O_.[[GetPrototypeOf]]().
+            1. If _parent_ is not *null*, then
+              1. Return ? _parent_.[[Set]](_P_, _V_, _Receiver_).
+            1. Else,
+              1. Let _ownDesc_ be the PropertyDescriptor{[[Value]]: *undefined*, [[Writable]]: *true*, [[Enumerable]]: *true*, [[Configurable]]: *true*}.
+          1. If IsDataDescriptor(_ownDesc_) is *true*, then
+            1. If _ownDesc_.[[Writable]] is *false*, return *false*.
+            1. If Type(_Receiver_) is not Object, return *false*.
+            1. Let _existingDescriptor_ be ? _Receiver_.[[GetOwnProperty]](_P_).
+            1. If _existingDescriptor_ is not *undefined*, then
+              1. If IsAccessorDescriptor(_existingDescriptor_) is *true*, return *false*.
+              1. If _existingDescriptor_.[[Writable]] is *false*, return *false*.
+              1. Let _valueDesc_ be the PropertyDescriptor{[[Value]]: _V_}.
+              1. Return ? _Receiver_.[[DefineOwnProperty]](_P_, _valueDesc_).
+            1. Else _Receiver_ does not currently have a property _P_,
+              1. Return ? CreateDataProperty(_Receiver_, _P_, _V_).
+          1. Assert: IsAccessorDescriptor(_ownDesc_) is *true*.
+          1. Let _setter_ be _ownDesc_.[[Set]].
+          1. If _setter_ is *undefined*, return *false*.
+          1. Perform ? Call(_setter_, _Receiver_, &laquo; _V_ &raquo;).
+          1. Return *true*.
+        </emu-alg>
+      </emu-clause>
     </emu-clause>
 
     <!-- es6num="9.1.10" -->
     <emu-clause id="sec-ordinary-object-internal-methods-and-internal-slots-delete-p">
       <h1>[[Delete]] (_P_)</h1>
-      <p>When the [[Delete]] internal method of _O_ is called with property key _P_ the following steps are taken:</p>
+      <p>When the [[Delete]] internal method of _O_ is called with property key _P_, the following steps are taken:</p>
       <emu-alg>
-        1. Assert: IsPropertyKey(_P_) is *true*.
-        1. Let _desc_ be ? _O_.[[GetOwnProperty]](_P_).
-        1. If _desc_ is *undefined*, return *true*.
-        1. If _desc_.[[Configurable]] is *true*, then
-          1. Remove the own property with name _P_ from _O_.
-          1. Return *true*.
-        1. Return *false*.
+        1. Return ? OrdinaryDelete(_O_, _P_).
       </emu-alg>
+
+      <emu-clause id="sec-ordinarydelete" aoid="OrdinaryDelete">
+        <h1>OrdinaryDelete (_O_, _P_)</h1>
+        <p>When the abstract operation OrdinaryDelete is called with Object _O_ and property key _P_, the following steps are taken:</p>
+        <emu-alg>
+          1. Assert: IsPropertyKey(_P_) is *true*.
+          1. Let _desc_ be ? _O_.[[GetOwnProperty]](_P_).
+          1. If _desc_ is *undefined*, return *true*.
+          1. If _desc_.[[Configurable]] is *true*, then
+            1. Remove the own property with name _P_ from _O_.
+            1. Return *true*.
+          1. Return *false*.
+        </emu-alg>
+      </emu-clause>
     </emu-clause>
 
     <!-- es6num="9.1.11" -->
@@ -6555,15 +6596,24 @@ for (let protoName of Reflect.enumerate(proto)) {
       <h1>[[OwnPropertyKeys]] ( )</h1>
       <p>When the [[OwnPropertyKeys]] internal method of _O_ is called the following steps are taken:</p>
       <emu-alg>
-        1. Let _keys_ be a new empty List.
-        1. For each own property key _P_ of _O_ that is an integer index, in ascending numeric index order
-          1. Add _P_ as the last element of _keys_.
-        1. For each own property key _P_ of _O_ that is a String but is not an integer index, in ascending chronological order of property creation
-          1. Add _P_ as the last element of _keys_.
-        1. For each own property key _P_ of _O_ that is a Symbol, in ascending chronological order of property creation
-          1. Add _P_ as the last element of _keys_.
-        1. Return _keys_.
+        1. Return ! OrdinaryOwnPropertyKeys(_O_).
       </emu-alg>
+
+      <emu-clause id="sec-ordinaryownpropertykeys" aoid="OrdinaryOwnPropertyKeys">
+        <h1>OrdinaryOwnPropertyKeys (_O_)</h1>
+        <p>When the abstract operation OrdinaryOwnPropertyKeys is called with Object _O_, the following steps are taken:</p>
+
+        <emu-alg>
+          1. Let _keys_ be a new empty List.
+          1. For each own property key _P_ of _O_ that is an integer index, in ascending numeric index order
+            1. Add _P_ as the last element of _keys_.
+          1. For each own property key _P_ of _O_ that is a String but is not an integer index, in ascending chronological order of property creation
+            1. Add _P_ as the last element of _keys_.
+          1. For each own property key _P_ of _O_ that is a Symbol, in ascending chronological order of property creation
+            1. Add _P_ as the last element of _keys_.
+          1. Return _keys_.
+        </emu-alg>
+      </emu-clause>
     </emu-clause>
 
     <!-- es6num="9.1.13" -->
@@ -6806,7 +6856,7 @@ for (let protoName of Reflect.enumerate(proto)) {
               1. Let _thisValue_ be ! ToObject(_thisArgument_).
               1. NOTE ToObject produces wrapper objects using _calleeRealm_.
           1. Let _envRec_ be _localEnv_'s EnvironmentRecord.
-          1. Assert: The next step never returns an abrupt completion because _envRec_.[[thisBindingStatus]] is not `"uninitialized"`.
+          1. Assert: The next step never returns an abrupt completion because _envRec_.[[thisBindingStatus]] is not `"initialized"`.
           1. Return _envRec_.BindThisValue(_thisValue_).
         </emu-alg>
       </emu-clause>
@@ -7579,7 +7629,7 @@ for (let protoName of Reflect.enumerate(proto)) {
           1. Let _map_ be the value of the [[ParameterMap]] internal slot of the arguments object.
           1. Let _isMapped_ be ! HasOwnProperty(_map_, _P_).
           1. If the value of _isMapped_ is *false*, then
-            1. Return the result of calling the default ordinary object [[Get]] internal method (<emu-xref href="#sec-ordinary-object-internal-methods-and-internal-slots-get-p-receiver"></emu-xref>) on _args_ passing _P_ and _Receiver_ as the arguments.
+            1. Return ? OrdinaryGet(_args_, _P_, _Receiver_).
           1. Else _map_ contains a formal parameter mapping for _P_,
             1. Return Get(_map_, _P_).
         </emu-alg>
@@ -7599,7 +7649,7 @@ for (let protoName of Reflect.enumerate(proto)) {
           1. If _isMapped_ is *true*, then
             1. Let _setStatus_ be Set(_map_, _P_, _V_, *false*).
             1. Assert: _setStatus_ is *true* because formal parameters mapped by argument objects are always writable.
-          1. Return the result of calling the default ordinary object [[Set]] internal method (<emu-xref href="#sec-ordinary-object-internal-methods-and-internal-slots-set-p-v-receiver"></emu-xref>) on _args_ passing _P_, _V_ and _Receiver_ as the arguments.
+          1. Return ? OrdinarySet(_args_, _P_, _V_, _Receiver_).
         </emu-alg>
       </emu-clause>
 
@@ -7608,10 +7658,10 @@ for (let protoName of Reflect.enumerate(proto)) {
         <h1>[[Delete]] (_P_)</h1>
         <p>The [[Delete]] internal method of an arguments exotic object when called with a property key _P_ performs the following steps:</p>
         <emu-alg>
-          1. Let _map_ be the value of the [[ParameterMap]] internal slot of the arguments object.
+          1. Let _args_ be the arguments object.
+          1. Let _map_ be the value of the [[ParameterMap]] internal slot of _args_.
           1. Let _isMapped_ be ! HasOwnProperty(_map_, _P_).
-          1. Let _result_ be the result of calling the default [[Delete]] internal method for ordinary objects (<emu-xref href="#sec-ordinary-object-internal-methods-and-internal-slots-delete-p"></emu-xref>) on the arguments object passing _P_ as the argument.
-          1. ReturnIfAbrupt(_result_).
+          1. Let _result_ be ? OrdinaryDelete(_args_, _P_).
           1. If _result_ is *true* and the value of _isMapped_ is *true*, then
             1. Call _map_.[[Delete]](_P_).
           1. Return _result_.
@@ -7812,7 +7862,7 @@ for (let protoName of Reflect.enumerate(proto)) {
             1. Let _numericIndex_ be ! CanonicalNumericIndexString(_P_).
             1. If _numericIndex_ is not *undefined*, then
               1. Return ? IntegerIndexedElementGet(_O_, _numericIndex_).
-          1. Return the result of calling the default ordinary object [[Get]] internal method (<emu-xref href="#sec-ordinary-object-internal-methods-and-internal-slots-get-p-receiver"></emu-xref>) on _O_ passing _P_ and _Receiver_ as arguments.
+          1. Return ? OrdinaryGet(_O_, _P_, _Receiver_).
         </emu-alg>
       </emu-clause>
 
@@ -7826,7 +7876,7 @@ for (let protoName of Reflect.enumerate(proto)) {
             1. Let _numericIndex_ be ! CanonicalNumericIndexString(_P_).
             1. If _numericIndex_ is not *undefined*, then
               1. Return ? IntegerIndexedElementSet(_O_, _numericIndex_, _V_).
-          1. Return the result of calling the default ordinary object [[Set]] internal method (<emu-xref href="#sec-ordinary-object-internal-methods-and-internal-slots-set-p-v-receiver"></emu-xref>) on _O_ passing _P_, _V_, and _Receiver_ as arguments.
+          1. Return ? OrdinarySet(_O_, _P_, _V_, _Receiver_).
         </emu-alg>
       </emu-clause>
 
@@ -8039,7 +8089,7 @@ for (let protoName of Reflect.enumerate(proto)) {
         <emu-alg>
           1. Assert: IsPropertyKey(_P_) is *true*.
           1. If Type(_P_) is Symbol, then
-            1. Return the result of calling the default ordinary object [[Get]] internal method (<emu-xref href="#sec-ordinary-object-internal-methods-and-internal-slots-get-p-receiver"></emu-xref>) on _O_ passing _P_ and _Receiver_ as arguments.
+            1. Return ? OrdinaryGet(_O_, _P_, _Receiver_).
           1. Let _exports_ be the value of _O_'s [[Exports]] internal slot.
           1. If _P_ is not an element of _exports_, return *undefined*.
           1. Let _m_ be the value of _O_'s [[Module]] internal slot.
@@ -8094,7 +8144,7 @@ for (let protoName of Reflect.enumerate(proto)) {
         <p>When the [[OwnPropertyKeys]] internal method of a module namespace exotic object _O_ is called the following steps are taken:</p>
         <emu-alg>
           1. Let _exports_ be a copy of the value of _O_'s [[Exports]] internal slot.
-          1. Let _symbolKeys_ be the result of calling the default ordinary object [[OwnPropertyKeys]] internal method (<emu-xref href="#sec-ordinary-object-internal-methods-and-internal-slots-ownpropertykeys"></emu-xref>) on _O_ passing no arguments.
+          1. Let _symbolKeys_ be ! OrdinaryOwnPropertyKeys(_O_).
           1. Append all the entries of _symbolKeys_ to the end of _exports_.
           1. Return _exports_.
         </emu-alg>
@@ -8115,6 +8165,22 @@ for (let protoName of Reflect.enumerate(proto)) {
           1. Create own properties of _M_ corresponding to the definitions in <emu-xref href="#sec-module-namespace-objects"></emu-xref>.
           1. Set _module_.[[Namespace]] to _M_.
           1. Return _M_.
+        </emu-alg>
+      </emu-clause>
+    </emu-clause>
+
+    <emu-clause id="sec-immutable-prototype-exotic-objects">
+      <h1>Immutable Prototype Exotic Objects</h1>
+      <p>An <dfn>immutable prototype exotic object</dfn> is an exotic object that has an immutable [[Prototype]] internal slot.</p>
+
+      <emu-clause id="sec-immutable-prototype-exotic-objects-setprototypeof-v">
+        <h1>[[SetPrototypeOf]] (_V_)</h1>
+        <p>When the [[SetPrototypeOf]] internal method of an immutable prototype exotic object _O_ is called with argument _V_ the following steps are taken:</p>
+        <emu-alg>
+          1. Assert: Either Type(_V_) is Object or Type(_V_) is Null.
+          1. Let _current_ be the value of the [[Prototype]] internal slot of _O_.
+          1. If SameValue(_V_, _current_), return *true*.
+          1. Return *false*.
         </emu-alg>
       </emu-clause>
     </emu-clause>
@@ -8302,11 +8368,12 @@ for (let protoName of Reflect.enumerate(proto)) {
         1. If _trap_ is *undefined*, then
           1. Return ? _target_.[[SetPrototypeOf]](_V_).
         1. Let _booleanTrapResult_ be ToBoolean(? Call(_trap_, _handler_, &laquo; _target_, _V_ &raquo;)).
+        1. If _booleanTrapResult_ is *false*, return *false*.
         1. Let _extensibleTarget_ be ? IsExtensible(_target_).
-        1. If _extensibleTarget_ is *true*, return _booleanTrapResult_.
+        1. If _extensibleTarget_ is *true*, return *true*.
         1. Let _targetProto_ be ? _target_.[[GetPrototypeOf]]().
-        1. If _booleanTrapResult_ is *true* and SameValue(_V_, _targetProto_) is *false*, throw a *TypeError* exception.
-        1. Return _booleanTrapResult_.
+        1. If SameValue(_V_, _targetProto_) is *false*, throw a *TypeError* exception.
+        1. Return *true*.
       </emu-alg>
       <emu-note>
         <p>[[SetPrototypeOf]] for proxy objects enforces the following invariant:</p>
@@ -8799,7 +8866,7 @@ for (let protoName of Reflect.enumerate(proto)) {
       SourceCharacter ::
         &gt; any Unicode code point
     </emu-grammar>
-    <p>ECMAScript code is expressed using Unicode, version 5.1 or later. ECMAScript source text is a sequence of code points. All Unicode code point values from U+0000 to U+10FFFF, including surrogate code points, may occur in source text where permitted by the ECMAScript grammars. The actual encodings used to store and interchange ECMAScript source text is not relevant to this specification. Regardless of the external source text encoding, a conforming ECMAScript implementation processes the source text as if it was an equivalent sequence of |SourceCharacter| values, each |SourceCharacter| being a Unicode code point. Conforming ECMAScript implementations are not required to perform any normalization of source text, or behave as though they were performing normalization of source text.</p>
+    <p>ECMAScript code is expressed using Unicode, version 8.0.0 or later. ECMAScript source text is a sequence of code points. All Unicode code point values from U+0000 to U+10FFFF, including surrogate code points, may occur in source text where permitted by the ECMAScript grammars. The actual encodings used to store and interchange ECMAScript source text is not relevant to this specification. Regardless of the external source text encoding, a conforming ECMAScript implementation processes the source text as if it was an equivalent sequence of |SourceCharacter| values, each |SourceCharacter| being a Unicode code point. Conforming ECMAScript implementations are not required to perform any normalization of source text, or behave as though they were performing normalization of source text.</p>
     <p>The components of a combining character sequence are treated as individual Unicode code points even though a user might think of the whole sequence as a single character.</p>
     <emu-note>
       <p>In string literals, regular expression literals, template literals and identifiers, any Unicode code point may also be expressed using Unicode escape sequences that explicitly express a code point's numeric value. Within a comment, such an escape sequence is effectively ignored as part of the comment.</p>
@@ -9110,7 +9177,7 @@ a = b / hi / g.exec(c).map(d);
         </tbody>
       </table>
     </emu-table>
-    <p>ECMAScript implementations must recognize as |WhiteSpace| code points listed in the &ldquo;Separator, space&rdquo; (Zs) category by Unicode 5.1. ECMAScript implementations may also recognize as |WhiteSpace| additional category Zs code points from subsequent editions of the Unicode Standard.</p>
+    <p>ECMAScript implementations must recognize as |WhiteSpace| code points listed in the &ldquo;Separator, space&rdquo; (Zs) category.</p>
     <emu-note>
       <p>Other than for the code points listed in <emu-xref href="#table-32"></emu-xref>, ECMAScript |WhiteSpace| intentionally excludes all code points that have the Unicode &ldquo;White_Space&rdquo; property but which are not classified in category &ldquo;Zs&rdquo;.</p>
     </emu-note>
@@ -9432,7 +9499,7 @@ a = b / hi / g.exec(c).map(d);
     <h2>Syntax</h2>
     <emu-grammar>
       Punctuator :: one of
-        `{` `(` `)` `[` `]` `.` `...` `;` `,` `&lt;` `&gt;` `&lt;=` `&gt;=` `==` `!=` `===` `!==` `+` `-` `*` `%` `++` `--` `&lt;&lt;` `&gt;&gt;` `&gt;&gt;&gt;` `&amp;` `|` `^` `!` `~` `&amp;&amp;` `||` `?` `:` `=` `+=` `-=` `*=` `%=` `&lt;&lt;=` `&gt;&gt;=` `&gt;&gt;&gt;=` `&amp;=` `|=` `^=` `=&gt;`
+        `{` `(` `)` `[` `]` `.` `...` `;` `,` `&lt;` `&gt;` `&lt;=` `&gt;=` `==` `!=` `===` `!==` `+` `-` `*` `%` `++` `--` `&lt;&lt;` `&gt;&gt;` `&gt;&gt;&gt;` `&amp;` `|` `^` `!` `~` `&amp;&amp;` `||` `?` `:` `=` `+=` `-=` `*=` `%=` `&lt;&lt;=` `&gt;&gt;=` `&gt;&gt;&gt;=` `&amp;=` `|=` `^=` `=&gt;` `**` `**=`
 
       DivPunctuator ::
         `/`
@@ -10322,7 +10389,7 @@ a = b / hi / g.exec(c).map(d);
   <!-- es6num="11.9" -->
   <emu-clause id="sec-automatic-semicolon-insertion">
     <h1>Automatic Semicolon Insertion</h1>
-    <p>Certain ECMAScript statements (empty statement, `let`, `const`, `import` declarations, some forms of `export` declarations, variable statement, expression statement, `debugger` statement, `continue` statement, `break` statement, `return` statement, and `throw` statement) must be terminated with semicolons. Such semicolons may always appear explicitly in the source text. For convenience, however, such semicolons may be omitted from the source text in certain situations. These situations are described by saying that semicolons are automatically inserted into the source code token stream in those situations.</p>
+    <p>Most ECMAScript statements and declarations must be terminated with a semicolon. Such semicolons may always appear explicitly in the source text. For convenience, however, such semicolons may be omitted from the source text in certain situations. These situations are described by saying that semicolons are automatically inserted into the source code token stream in those situations.</p>
 
     <!-- es6num="11.9.1" -->
     <emu-clause id="sec-rules-of-automatic-semicolon-insertion">
@@ -10331,7 +10398,7 @@ a = b / hi / g.exec(c).map(d);
       <p>There are three basic rules of semicolon insertion:</p>
       <ol>
         <li>
-          When, as a |Script| or |Module| is parsed from left to right, a token (called the <em>offending token</em>) is encountered that is not allowed by any production of the grammar, then a semicolon is automatically inserted before the offending token if one or more of the following conditions is true:
+          <p>When, as a |Script| or |Module| is parsed from left to right, a token (called the <em>offending token</em>) is encountered that is not allowed by any production of the grammar, then a semicolon is automatically inserted before the offending token if one or more of the following conditions is true:</p>
           <ul>
             <li>
               The offending token is separated from the previous token by at least one |LineTerminator|.
@@ -10355,7 +10422,7 @@ a = b / hi / g.exec(c).map(d);
       <emu-note>
         <p>The following are the only restricted productions in the grammar:</p>
         <emu-grammar>
-          PostfixExpression[Yield] :
+          UpdateExpression[Yield] :
             LeftHandSideExpression[?Yield] [no LineTerminator here] `++`
             LeftHandSideExpression[?Yield] [no LineTerminator here] `--`
 
@@ -12105,21 +12172,23 @@ a = b + c
   </emu-clause>
 
   <!-- es6num="12.4" -->
-  <emu-clause id="sec-postfix-expressions">
-    <h1>Postfix Expressions</h1>
+  <emu-clause id="sec-update-expressions">
+    <h1>Update Expressions</h1>
     <h2>Syntax</h2>
     <emu-grammar>
-      PostfixExpression[Yield] :
+      UpdateExpression[Yield] :
         LeftHandSideExpression[?Yield]
         LeftHandSideExpression[?Yield] [no LineTerminator here] `++`
         LeftHandSideExpression[?Yield] [no LineTerminator here] `--`
+        `++` UnaryExpression[?Yield]
+        `--` UnaryExpression[?Yield]
     </emu-grammar>
 
     <!-- es6num="12.4.1" -->
-    <emu-clause id="sec-postfix-expressions-static-semantics-early-errors">
+    <emu-clause id="sec-update-expressions-static-semantics-early-errors">
       <h1>Static Semantics: Early Errors</h1>
       <emu-grammar>
-        PostfixExpression :
+        UpdateExpression :
           LeftHandSideExpression `++`
           LeftHandSideExpression `--`
       </emu-grammar>
@@ -12128,16 +12197,29 @@ a = b + c
           It is an early Reference Error if IsValidSimpleAssignmentTarget of |LeftHandSideExpression| is *false*.
         </li>
       </ul>
+
+      <emu-grammar>
+        UpdateExpression :
+          `++` UnaryExpression
+          `--` UnaryExpression
+      </emu-grammar>
+      <ul>
+        <li>
+          It is an early Reference Error if IsValidSimpleAssignmentTarget of |UnaryExpression| is *false*.
+        </li>
+      </ul>
     </emu-clause>
 
     <!-- es6num="12.4.2" -->
-    <emu-clause id="sec-postfix-expressions-static-semantics-isfunctiondefinition">
+    <emu-clause id="sec-update-expressions-static-semantics-isfunctiondefinition">
       <h1>Static Semantics: IsFunctionDefinition</h1>
       <emu-see-also-para op="IsFunctionDefinition"></emu-see-also-para>
       <emu-grammar>
-        PostfixExpression :
+        UpdateExpression :
           LeftHandSideExpression `++`
           LeftHandSideExpression `--`
+          `++` UnaryExpression
+          `--` UnaryExpression
       </emu-grammar>
       <emu-alg>
         1. Return *false*.
@@ -12145,13 +12227,15 @@ a = b + c
     </emu-clause>
 
     <!-- es6num="12.4.3" -->
-    <emu-clause id="sec-postfix-expressions-static-semantics-isvalidsimpleassignmenttarget">
+    <emu-clause id="sec-update-expressions-static-semantics-isvalidsimpleassignmenttarget">
       <h1>Static Semantics: IsValidSimpleAssignmentTarget</h1>
       <emu-see-also-para op="IsValidSimpleAssignmentTarget"></emu-see-also-para>
       <emu-grammar>
-        PostfixExpression :
+        UpdateExpression :
           LeftHandSideExpression `++`
           LeftHandSideExpression `--`
+          `++` UnaryExpression
+          `--` UnaryExpression
       </emu-grammar>
       <emu-alg>
         1. Return *false*.
@@ -12165,7 +12249,7 @@ a = b + c
       <!-- es6num="12.4.4.1" -->
       <emu-clause id="sec-postfix-increment-operator-runtime-semantics-evaluation">
         <h1>Runtime Semantics: Evaluation</h1>
-        <emu-grammar>PostfixExpression : LeftHandSideExpression `++`</emu-grammar>
+        <emu-grammar>UpdateExpression : LeftHandSideExpression `++`</emu-grammar>
         <emu-alg>
           1. Let _lhs_ be the result of evaluating |LeftHandSideExpression|.
           1. Let _oldValue_ be ? ToNumber(? GetValue(_lhs_)).
@@ -12183,7 +12267,7 @@ a = b + c
       <!-- es6num="12.4.5.1" -->
       <emu-clause id="sec-postfix-decrement-operator-runtime-semantics-evaluation">
         <h1>Runtime Semantics: Evaluation</h1>
-        <emu-grammar>PostfixExpression : LeftHandSideExpression `--`</emu-grammar>
+        <emu-grammar>UpdateExpression : LeftHandSideExpression `--`</emu-grammar>
         <emu-alg>
           1. Let _lhs_ be the result of evaluating |LeftHandSideExpression|.
           1. Let _oldValue_ be ? ToNumber(? GetValue(_lhs_)).
@@ -12193,6 +12277,93 @@ a = b + c
         </emu-alg>
       </emu-clause>
     </emu-clause>
+
+    <!-- es6num="12.5.7" -->
+    <emu-clause id="sec-prefix-increment-operator">
+      <h1>Prefix Increment Operator</h1>
+
+      <!-- es6num="12.5.7.1" -->
+      <emu-clause id="sec-prefix-increment-operator-runtime-semantics-evaluation">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>UpdateExpression : `++` UnaryExpression</emu-grammar>
+        <emu-alg>
+          1. Let _expr_ be the result of evaluating |UnaryExpression|.
+          1. Let _oldValue_ be ? ToNumber(? GetValue(_expr_)).
+          1. Let _newValue_ be the result of adding the value `1` to _oldValue_, using the same rules as for the `+` operator (see <emu-xref href="#sec-applying-the-additive-operators-to-numbers"></emu-xref>).
+          1. Perform ? PutValue(_expr_, _newValue_).
+          1. Return _newValue_.
+        </emu-alg>
+      </emu-clause>
+    </emu-clause>
+
+    <!-- es6num="12.5.8" -->
+    <emu-clause id="sec-prefix-decrement-operator">
+      <h1>Prefix Decrement Operator</h1>
+
+      <!-- es6num="12.5.8.1" -->
+      <emu-clause id="sec-prefix-decrement-operator-runtime-semantics-evaluation">
+        <h1>Runtime Semantics: Evaluation</h1>
+        <emu-grammar>UpdateExpression : `--` UnaryExpression</emu-grammar>
+        <emu-alg>
+          1. Let _expr_ be the result of evaluating |UnaryExpression|.
+          1. Let _oldValue_ be ? ToNumber(? GetValue(_expr_)).
+          1. Let _newValue_ be the result of subtracting the value `1` from _oldValue_, using the same rules as for the `-` operator (see <emu-xref href="#sec-applying-the-additive-operators-to-numbers"></emu-xref>).
+          1. Perform ? PutValue(_expr_, _newValue_).
+          1. Return _newValue_.
+        </emu-alg>
+      </emu-clause>
+    </emu-clause>
+  </emu-clause>
+
+  <emu-clause id="sec-exp-operator">
+    <h1>Exponentiation Operator</h1>
+    <h2>Syntax</h2>
+
+    <emu-grammar>
+      ExponentiationExpression[Yield] :
+        UnaryExpression[?Yield]
+        UpdateExpression[?Yield] `**` ExponentiationExpression[?Yield]
+    </emu-grammar>
+
+    <emu-clause id="sec-exp-operator-static-semantics-isfunctiondefinition">
+      <h1>Static Semantics: IsFunctionDefinition</h1>
+      <emu-see-also-para op="IsFunctionDefinition"></emu-see-also-para>
+      <emu-grammar>
+        ExponentiationExpression :
+          UpdateExpression `**` ExponentiationExpression
+      </emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>
+
+    <emu-clause id="sec-exp-operator-static-semantics-isvalidsimpleassignmenttarget">
+      <h1>Static Semantics: IsValidSimpleAssignmentTarget</h1>
+      <emu-see-also-para op="IsValidSimpleAssignmentTarget"></emu-see-also-para>
+      <emu-grammar>
+        ExponentiationExpression :
+          UpdateExpression `**` ExponentiationExpression
+      </emu-grammar>
+      <emu-alg>
+        1. Return *false*.
+      </emu-alg>
+    </emu-clause>
+
+    <emu-clause id="sec-exp-operator-runtime-semantics-evaluation">
+      <h1>Runtime Semantics: Evaluation</h1>
+      <emu-grammar>
+        ExponentiationExpression : UpdateExpression `**` ExponentiationExpression
+      </emu-grammar>
+      <emu-alg>
+        1. Let _left_ be the result of evaluating _UpdateExpression_.
+        1. Let _leftValue_ be ? GetValue(_left_).
+        1. Let _right_ be the result of evaluating _ExponentiationExpression_.
+        1. Let _rightValue_ be ? GetValue(_right_).
+        1. Let _base_ be ? ToNumber(_leftValue_).
+        1. Let _exponent_ be ? ToNumber(_rightValue_).
+        1. Return the result of <emu-xref href="#sec-applying-the-exp-operator" title>Applying the ** operator</emu-xref> with _base_ and _exponent_ as specified in <emu-xref href="#sec-applying-the-exp-operator"></emu-xref>.
+      </emu-alg>
+    </emu-clause>
   </emu-clause>
 
   <!-- es6num="12.5" -->
@@ -12201,32 +12372,15 @@ a = b + c
     <h2>Syntax</h2>
     <emu-grammar>
       UnaryExpression[Yield] :
-        PostfixExpression[?Yield]
+        UpdateExpression[?Yield]
         `delete` UnaryExpression[?Yield]
         `void` UnaryExpression[?Yield]
         `typeof` UnaryExpression[?Yield]
-        `++` UnaryExpression[?Yield]
-        `--` UnaryExpression[?Yield]
         `+` UnaryExpression[?Yield]
         `-` UnaryExpression[?Yield]
         `~` UnaryExpression[?Yield]
         `!` UnaryExpression[?Yield]
     </emu-grammar>
-
-    <!-- es6num="12.5.1" -->
-    <emu-clause id="sec-unary-operators-static-semantics-early-errors">
-      <h1>Static Semantics: Early Errors</h1>
-      <emu-grammar>
-        UnaryExpression :
-          `++` UnaryExpression
-          `--` UnaryExpression
-      </emu-grammar>
-      <ul>
-        <li>
-          It is an early Reference Error if IsValidSimpleAssignmentTarget of |UnaryExpression| is *false*.
-        </li>
-      </ul>
-    </emu-clause>
 
     <!-- es6num="12.5.2" -->
     <emu-clause id="sec-unary-operators-static-semantics-isfunctiondefinition">
@@ -12234,11 +12388,10 @@ a = b + c
       <emu-see-also-para op="IsFunctionDefinition"></emu-see-also-para>
       <emu-grammar>
         UnaryExpression :
+          UpdateExpression
           `delete` UnaryExpression
           `void` UnaryExpression
           `typeof` UnaryExpression
-          `++` UnaryExpression
-          `--` UnaryExpression
           `+` UnaryExpression
           `-` UnaryExpression
           `~` UnaryExpression
@@ -12255,11 +12408,10 @@ a = b + c
       <emu-see-also-para op="IsValidSimpleAssignmentTarget"></emu-see-also-para>
       <emu-grammar>
         UnaryExpression :
+          UpdateExpression
           `delete` UnaryExpression
           `void` UnaryExpression
           `typeof` UnaryExpression
-          `++` UnaryExpression
-          `--` UnaryExpression
           `+` UnaryExpression
           `-` UnaryExpression
           `~` UnaryExpression
@@ -12456,41 +12608,6 @@ a = b + c
       </emu-clause>
     </emu-clause>
 
-    <!-- es6num="12.5.7" -->
-    <emu-clause id="sec-prefix-increment-operator">
-      <h1>Prefix Increment Operator</h1>
-
-      <!-- es6num="12.5.7.1" -->
-      <emu-clause id="sec-prefix-increment-operator-runtime-semantics-evaluation">
-        <h1>Runtime Semantics: Evaluation</h1>
-        <emu-grammar>UnaryExpression : `++` UnaryExpression</emu-grammar>
-        <emu-alg>
-          1. Let _expr_ be the result of evaluating |UnaryExpression|.
-          1. Let _oldValue_ be ? ToNumber(? GetValue(_expr_)).
-          1. Let _newValue_ be the result of adding the value `1` to _oldValue_, using the same rules as for the `+` operator (see <emu-xref href="#sec-applying-the-additive-operators-to-numbers"></emu-xref>).
-          1. Perform ? PutValue(_expr_, _newValue_).
-          1. Return _newValue_.
-        </emu-alg>
-      </emu-clause>
-    </emu-clause>
-
-    <!-- es6num="12.5.8" -->
-    <emu-clause id="sec-prefix-decrement-operator">
-      <h1>Prefix Decrement Operator</h1>
-
-      <!-- es6num="12.5.8.1" -->
-      <emu-clause id="sec-prefix-decrement-operator-runtime-semantics-evaluation">
-        <h1>Runtime Semantics: Evaluation</h1>
-        <emu-grammar>UnaryExpression : `--` UnaryExpression</emu-grammar>
-        <emu-alg>
-          1. Let _expr_ be the result of evaluating |UnaryExpression|.
-          1. Let _oldValue_ be ? ToNumber(? GetValue(_expr_)).
-          1. Let _newValue_ be the result of subtracting the value `1` from _oldValue_, using the same rules as for the `-` operator (see <emu-xref href="#sec-applying-the-additive-operators-to-numbers"></emu-xref>).
-          1. Perform ? PutValue(_expr_, _newValue_).
-          1. Return _newValue_.
-        </emu-alg>
-      </emu-clause>
-    </emu-clause>
 
     <!-- es6num="12.5.9" -->
     <emu-clause id="sec-unary-plus-operator">
@@ -12703,6 +12820,40 @@ a = b + c
           </li>
         </ul>
       </emu-clause>
+      <emu-clause id="sec-applying-the-exp-operator">
+        <h1>Applying the `**` Operator</h1>
+        <p>
+          Returns an implementation-dependent approximation of the result of raising _base_ to the power _exponent_.
+        </p>
+        <ul>
+          <li>If _exponent_ is *NaN*, the result is *NaN*.</li>
+          <li>If _exponent_ is +0, the result is 1, even if _base_ is *NaN*.</li>
+          <li>If _exponent_ is -0, the result is 1, even if _base_ is *NaN*.</li>
+          <li>If _base_ is *NaN* and _exponent_ is nonzero, the result is *NaN*.</li>
+          <li>If abs(_base_) &gt; 1 and _exponent_ is *+&infin;*, the result is *+&infin;*.</li>
+          <li>If abs(_base_) &gt; 1 and _exponent_ is *-&infin;*, the result is +0.</li>
+          <li>If abs(_base_) is 1 and _exponent_ is *+&infin;*, the result is *NaN*.</li>
+          <li>If abs(_base_) is 1 and _exponent_ is *-&infin;*, the result is *NaN*.</li>
+          <li>If abs(_base_) &lt; 1 and _exponent_ is *+&infin;*, the result is +0.</li>
+          <li>If abs(_base_) &lt; 1 and _exponent_ is *-&infin;*, the result is *+&infin;*.</li>
+          <li>If _base_ is *+&infin;* and _exponent_ &gt; 0, the result is *+&infin;*.</li>
+          <li>If _base_ is *+&infin;* and _exponent_ &lt; 0, the result is +0.</li>
+          <li>If _base_ is *-&infin;* and _exponent_ &gt; 0 and _exponent_ is an odd integer, the result is *-&infin;*.</li>
+          <li>If _base_ is *-&infin;* and _exponent_ &gt; 0 and _exponent_ is not an odd integer, the result is *+&infin;*.</li>
+          <li>If _base_ is *-&infin;* and _exponent_ &lt; 0 and _exponent_ is an odd integer, the result is -0.</li>
+          <li>If _base_ is *-&infin;* and _exponent_ &lt; 0 and _exponent_ is not an odd integer, the result is +0.</li>
+          <li>If _base_ is +0 and _exponent_ &gt; 0, the result is +0.</li>
+          <li>If _base_ is +0 and _exponent_ &lt; 0, the result is *+&infin;*.</li>
+          <li>If _base_ is -0 and _exponent_ &gt; 0 and _exponent_ is an odd integer, the result is -0.</li>
+          <li>If _base_ is -0 and _exponent_ &gt; 0 and _exponent_ is not an odd integer, the result is +0.</li>
+          <li>If _base_ is -0 and _exponent_ &lt; 0 and _exponent_ is an odd integer, the result is *-&infin;*.</li>
+          <li>If _base_ is -0 and _exponent_ &lt; 0 and _exponent_ is not an odd integer, the result is *+&infin;*.</li>
+          <li>If _base_ &lt; 0 and _base_ is finite and _exponent_ is finite and _exponent_ is not an integer, the result is *NaN*.</li>
+        </ul>
+        <emu-note>
+          <p>The result of _base_ `**` _exponent_ when _base_ is *1* or *-1* and _exponent_ is *+Infinity* or *-Infinity* differs from IEEE 754-2008. The first edition of ECMAScript specified a result of *NaN* for this operation, whereas later versions of IEEE 754-2008 specified *1*. The historical ECMAScript behaviour is preserved for compatibility reasons.</p>
+        </emu-note>
+      </emu-clause>
     </emu-clause>
   </emu-clause>
 
@@ -12747,7 +12898,7 @@ a = b + c
 
     <!-- es6num="12.7.3" -->
     <emu-clause id="sec-addition-operator-plus">
-      <h1>The Addition operator ( `+` )</h1>
+      <h1>The Addition Operator ( `+` )</h1>
       <emu-note>
         <p>The addition operator either performs string concatenation or numeric addition.</p>
       </emu-note>
@@ -13415,7 +13566,7 @@ a = b + c
         LeftHandSideExpression[?Yield] AssignmentOperator AssignmentExpression[?In, ?Yield]
 
       AssignmentOperator : one of
-        `*=` `/=` `%=` `+=` `-=` `&lt;&lt;=` `&gt;&gt;=` `&gt;&gt;&gt;=` `&amp;=` `^=` `|=`
+        `*=` `/=` `%=` `+=` `-=` `&lt;&lt;=` `&gt;&gt;=` `&gt;&gt;&gt;=` `&amp;=` `^=` `|=` `**=`
     </emu-grammar>
 
     <!-- es6num="12.14.1" -->
@@ -13582,7 +13733,7 @@ a = b + c
         <p>with parameter _value_</p>
         <emu-grammar>ObjectAssignmentPattern : `{` `}`</emu-grammar>
         <emu-alg>
-          1. Let _valid_ be ? RequireObjectCoercible(_value_).
+          1. Perform ? RequireObjectCoercible(_value_).
           1. Return NormalCompletion(~empty~).
         </emu-alg>
         <emu-grammar>
@@ -13591,7 +13742,7 @@ a = b + c
             `{` AssignmentPropertyList `,` `}`
         </emu-grammar>
         <emu-alg>
-          1. Let _valid_ be ? RequireObjectCoercible(_value_).
+          1. Perform ? RequireObjectCoercible(_value_).
           1. Return the result of performing DestructuringAssignmentEvaluation for |AssignmentPropertyList| using _value_ as the argument.
         </emu-alg>
         <emu-grammar>ArrayAssignmentPattern : `[` `]`</emu-grammar>
@@ -17250,7 +17401,7 @@ eval("1;var a;")
 
   <!-- es6num="13.16" -->
   <emu-clause id="sec-debugger-statement">
-    <h1>The `debugger` statement</h1>
+    <h1>The `debugger` Statement</h1>
     <h2>Syntax</h2>
     <emu-grammar>
       DebuggerStatement :
@@ -19221,20 +19372,25 @@ eval("1;var a;")
           MultiplicativeExpression :
             MultiplicativeExpression MultiplicativeOperator UnaryExpression
 
+          ExponentiationExpression :
+            UnaryExpression
+            UpdateExpression `**` ExponentiationExpression
+
+          UpdateExpression :
+            LeftHandSideExpression `++`
+            LeftHandSideExpression `--`
+            `++` UnaryExpression
+            `--` UnaryExpression
+
           UnaryExpression :
+            UpdateExpression
             `delete` UnaryExpression
             `void` UnaryExpression
             `typeof` UnaryExpression
-            `++` UnaryExpression
-            `--` UnaryExpression
             `+` UnaryExpression
             `-` UnaryExpression
             `~` UnaryExpression
             `!` UnaryExpression
-
-          PostfixExpression :
-            LeftHandSideExpression `++`
-            LeftHandSideExpression `--`
 
           CallExpression :
             SuperCall
@@ -21529,7 +21685,7 @@ eval("1;var a;")
     <p>An implementation of HostReportErrors must complete normally in all cases. The default implementation of HostReportErrors is to do nothing.</p>
 
     <emu-note>
-      _errorList_ will be a List of ECMAScript language values. If the errors are parsing errors or early errors, these will always be *SyntaxError* or *ReferenceError* objects. Runtime errors, however, can be any ECMAScript value.
+      <p>_errorList_ will be a List of ECMAScript language values. If the errors are parsing errors or early errors, these will always be *SyntaxError* or *ReferenceError* objects. Runtime errors, however, can be any ECMAScript value.</p>
     </emu-note>
   </emu-clause>
 
@@ -21584,9 +21740,9 @@ eval("1;var a;")
   <p>Unless otherwise specified every built-in prototype object has the Object prototype object, which is the initial value of the expression `Object.prototype` (<emu-xref href="#sec-properties-of-the-object-prototype-object"></emu-xref>), as the value of its [[Prototype]] internal slot, except the Object prototype object itself.</p>
   <p>Built-in function objects that are not identified as constructors do not implement the [[Construct]] internal method unless otherwise specified in the description of a particular function.</p>
   <p>Unless otherwise specified, each built-in function defined in this specification is created as if by calling the CreateBuiltinFunction abstract operation (<emu-xref href="#sec-createbuiltinfunction"></emu-xref>).</p>
-  <p>Every built-in Function object, including constructors, has a `length` property whose value is an integer. Unless otherwise specified, this value is equal to the largest number of named arguments shown in the subclause headings for the function description. Optional parameters (which are indicated with brackets: `[` `]`) or rest parameters (which are shown using the form «...name») are not included in the default argument count.</p>
+  <p>Every built-in Function object, including constructors, has a `length` property whose value is an integer. Unless otherwise specified, this value is equal to the largest number of named arguments shown in the subclause headings for the function description. Optional parameters (which are indicated with brackets: `[` `]`) or rest parameters (which are shown using the form &laquo;...name&raquo;) are not included in the default argument count.</p>
   <emu-note>
-    <p>For example, the function object that is the initial value of the `map` property of the Array prototype object is described under the subclause heading «Array.prototype.map (callbackFn [ , thisArg])» which shows the two named arguments callbackFn and thisArg, the latter being optional; therefore the value of the `length` property of that Function object is `1`.</p>
+    <p>For example, the function object that is the initial value of the `map` property of the Array prototype object is described under the subclause heading &laquo;Array.prototype.map (callbackFn [ , thisArg])&raquo; which shows the two named arguments callbackFn and thisArg, the latter being optional; therefore the value of the `length` property of that Function object is `1`.</p>
   </emu-note>
   <p>Unless otherwise specified, the `length` property of a built-in Function object has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
   <p>Every built-in Function object, including constructors, that is not identified as an anonymous function has a `name` property whose value is a String. Unless otherwise specified, this value is the name that is given to the function in this specification. For functions that are specified as properties of objects, the name value is the property name string used to access the function. Functions that are specified as get or set accessor functions of built-in properties have `"get "` or `"set "` prepended to the property name string. The value of the `name` property is explicitly specified for each built-in functions whose property key is a Symbol value.</p>
@@ -22738,7 +22894,7 @@ eval("1;var a;")
     <!-- es6num="19.1.3" -->
     <emu-clause id="sec-properties-of-the-object-prototype-object">
       <h1>Properties of the Object Prototype Object</h1>
-      <p>The Object prototype object is the intrinsic object <dfn>%ObjectPrototype%</dfn>. The Object prototype object is an ordinary object.</p>
+      <p>The Object prototype object is the intrinsic object <dfn>%ObjectPrototype%</dfn>. The Object prototype object is an immutable prototype exotic object.</p>
       <p>The value of the [[Prototype]] internal slot of the Object prototype object is *null* and the initial value of the [[Extensible]] internal slot is *true*.</p>
 
       <!-- es6num="19.1.3.1" -->
@@ -23091,7 +23247,7 @@ new Function("a,b", "c", "return a+b+c")
 
       <!-- es6num="19.2.3.6" -->
       <emu-clause id="sec-function.prototype-@@hasinstance">
-        <h1>Function.prototype[@@hasInstance] ( _V_ )</h1>
+        <h1>Function.prototype [ @@hasInstance ] ( _V_ )</h1>
         <p>When the @@hasInstance method of an object _F_ is called with value _V_, the following steps are taken:</p>
         <emu-alg>
           1. Let _F_ be the *this* value.
@@ -24778,83 +24934,12 @@ new Function("a,b", "c", "return a+b+c")
 
       <!-- es6num="20.2.2.26" -->
       <emu-clause id="sec-math.pow">
-        <h1>Math.pow ( _x_, _y_ )</h1>
-        <p>Returns an implementation-dependent approximation to the result of raising _x_ to the power _y_.</p>
-        <ul>
+        <h1>Math.pow ( _base_, _exponent_ )</h1>
+        <ol>
           <li>
-            If _y_ is NaN, the result is NaN.
+            Return the result of <emu-xref href="#sec-applying-the-exp-operator" title>Applying the ** operator</emu-xref> with _base_ and _exponent_ as specified in <emu-xref href="#sec-applying-the-exp-operator"></emu-xref>.
           </li>
-          <li>
-            If _y_ is +0, the result is 1, even if _x_ is NaN.
-          </li>
-          <li>
-            If _y_ is -0, the result is 1, even if _x_ is NaN.
-          </li>
-          <li>
-            If _x_ is NaN and _y_ is nonzero, the result is NaN.
-          </li>
-          <li>
-            If abs(_x_)&gt;1 and _y_ is *+&infin;*, the result is *+&infin;*.
-          </li>
-          <li>
-            If abs(_x_)&gt;1 and _y_ is *-&infin;*, the result is +0.
-          </li>
-          <li>
-            If abs(_x_) is 1 and _y_ is *+&infin;*, the result is NaN.
-          </li>
-          <li>
-            If abs(_x_) is 1 and _y_ is *-&infin;*, the result is NaN.
-          </li>
-          <li>
-            If abs(_x_)&lt;1 and _y_ is *+&infin;*, the result is +0.
-          </li>
-          <li>
-            If abs(_x_)&lt;1 and _y_ is *-&infin;*, the result is *+&infin;*.
-          </li>
-          <li>
-            If _x_ is *+&infin;* and _y_&gt;0, the result is *+&infin;*.
-          </li>
-          <li>
-            If _x_ is *+&infin;* and _y_&lt;0, the result is +0.
-          </li>
-          <li>
-            If _x_ is *-&infin;* and _y_&gt;0 and _y_ is an odd integer, the result is *-&infin;*.
-          </li>
-          <li>
-            If _x_ is *-&infin;* and _y_&gt;0 and _y_ is not an odd integer, the result is *+&infin;*.
-          </li>
-          <li>
-            If _x_ is *-&infin;* and _y_&lt;0 and _y_ is an odd integer, the result is -0.
-          </li>
-          <li>
-            If _x_ is *-&infin;* and _y_&lt;0 and _y_ is not an odd integer, the result is +0.
-          </li>
-          <li>
-            If _x_ is +0 and _y_&gt;0, the result is +0.
-          </li>
-          <li>
-            If _x_ is +0 and _y_&lt;0, the result is *+&infin;*.
-          </li>
-          <li>
-            If _x_ is -0 and _y_&gt;0 and _y_ is an odd integer, the result is -0.
-          </li>
-          <li>
-            If _x_ is -0 and _y_&gt;0 and _y_ is not an odd integer, the result is +0.
-          </li>
-          <li>
-            If _x_ is -0 and _y_&lt;0 and _y_ is an odd integer, the result is *-&infin;*.
-          </li>
-          <li>
-            If _x_ is -0 and _y_&lt;0 and _y_ is not an odd integer, the result is *+&infin;*.
-          </li>
-          <li>
-            If _x_&lt;0 and _x_ is finite and _y_ is finite and _y_ is not an integer, the result is NaN.
-          </li>
-        </ul>
-
-        <emu-note>
-          <p>The result of `Math.pow(x, y)` when _x_ is *1* or *-1* and _y_ is *+Infinity* or *-Infinity* differs from IEEE 754-2008. The first edition of ECMAScript specified a result of *NaN* for this operation, whereas later versions of IEEE 754-2008 specified *1*. The historical ECMAScript behaviour is preserved for compatibility reasons.</p>
-        </emu-note>
+        </ol>
       </emu-clause>
 
       <!-- es6num="20.2.2.27" -->
@@ -25275,10 +25360,12 @@ new Function("a,b", "c", "return a+b+c")
         <emu-alg>
           1. If _time_ is not finite, return *NaN*.
           1. If abs(_time_) &gt; 8.64 &times; 10<sup>15</sup>, return *NaN*.
-          1. Return ToInteger(_time_) + (*+0*). (Adding a positive zero converts *-0* to *+0*.)
+          1. Let _clippedTime_ be ToInteger(_time_).
+          1. If _clippedTime_ is -0, let _clippedTime_ be +0.
+          1. Return _clippedTime_.
         </emu-alg>
         <emu-note>
-          <p>The point of step 3 is that an implementation is permitted a choice of internal representations of time values, for example as a 64-bit signed integer or as a 64-bit floating-point value. Depending on the implementation, this internal representation may or may not distinguish *-0* and *+0*.</p>
+          <p>The point of step 4 is that an implementation is permitted a choice of internal representations of time values, for example as a 64-bit signed integer or as a 64-bit floating-point value. Depending on the implementation, this internal representation may or may not distinguish *-0* and *+0*.</p>
         </emu-note>
       </emu-clause>
 
@@ -25412,7 +25499,7 @@ THH:mm:ss.sss
 
         <!-- es6num="20.3.1.16.1" -->
         <emu-clause id="sec-extended-years">
-          <h1>Extended years</h1>
+          <h1>Extended Years</h1>
           <p>ECMAScript requires the ability to specify 6 digit years (extended years); approximately 285,426 years, either forward or backward, from 01 January, 1970 UTC. To represent years before 0 or after 9999, ISO 8601 permits the expansion of the year representation, but only by prior agreement between the sender and the receiver. In the simplified ECMAScript format such an expanded year representation shall have 2 extra year digits and is always prefixed with a + or - sign. The year 0 is considered positive and hence prefixed with a + sign.</p>
           <emu-note>
             <p>Examples of extended years:</p>
@@ -26891,7 +26978,7 @@ Date.parse(x.toLocaleString())
           1. Repeat, while _q_ &ne; _s_
             1. Let _e_ be SplitMatch(_S_, _q_, _R_).
             1. If _e_ is *false*, let _q_ be _q_+1.
-            1. Else _e_ is an integer index into _S_,
+            1. Else _e_ is an integer index &le; _s_,
               1. If _e_ = _p_, let _q_ be _q_+1.
               1. Else _e_ &ne; _p_,
                 1. Let _T_ be a String value equal to the substring of _S_ consisting of the code units at indices _p_ (inclusive) through _q_ (exclusive).
@@ -26907,17 +26994,8 @@ Date.parse(x.toLocaleString())
           1. Return _A_.
         </emu-alg>
         <emu-note>
-          <p>The value of _separator_ may be an empty String, an empty regular expression, or a regular expression that can match an empty String. In this case, _separator_ does not match the empty substring at the beginning or end of the input String, nor does it match the empty substring at the end of the previous separator match. (For example, if _separator_ is the empty String, the String is split up into individual code unit elements; the length of the result array equals the length of the String, and each substring contains one code unit.) If _separator_ is a regular expression, only the first match at a given index of the *this* String is considered, even if backtracking could yield a non-empty-substring match at that index. (For example, `"ab".split(/a*?/)` evaluates to the array `["a","b"]`, while `"ab".split(/a*/)` evaluates to the array `["","b"]`.)</p>
+          <p>The value of _separator_ may be an empty String. In this case, _separator_ does not match the empty substring at the beginning or end of the input String, nor does it match the empty substring at the end of the previous separator match. If _separator_ is the empty String, the String is split up into individual code unit elements; the length of the result array equals the length of the String, and each substring contains one code unit.</p>
           <p>If the *this* object is (or converts to) the empty String, the result depends on whether _separator_ can match the empty String. If it can, the result array contains no elements. Otherwise, the result array contains one element, which is the empty String.</p>
-          <p>If _separator_ is a regular expression that contains capturing parentheses, then each time _separator_ is matched the results (including any *undefined* results) of the capturing parentheses are spliced into the output array. For example,</p>
-          <pre>
-            "A&lt;B&gt;bold&lt;/B&gt;and&lt;CODE&gt;coded&lt;/CODE&gt;".split(/&lt;(\/)?([^&lt;&gt;]+)&gt;/)
-          </pre>
-          <p>evaluates to the array:</p>
-          <pre><code class="javascript">
-["A", undefined, "B", "bold", "/", "B", "and", undefined,
-"CODE", "coded", "/", "CODE", ""]
-          </code></pre>
           <p>If _separator_ is *undefined*, then the result array contains just one String, which is the *this* value (converted to a String). If _limit_ is not *undefined*, then the output array is truncated so that it contains no more than _limit_ elements.</p>
         </emu-note>
         <emu-note>
@@ -27088,7 +27166,7 @@ Date.parse(x.toLocaleString())
 
       <!-- es6num="21.1.3.27" -->
       <emu-clause id="sec-string.prototype-@@iterator">
-        <h1>String.prototype [ @@iterator ]( )</h1>
+        <h1>String.prototype [ @@iterator ] ( )</h1>
         <p>When the @@iterator method is called it returns an Iterator object (<emu-xref href="#sec-iterator-interface"></emu-xref>) that iterates over the code points of a String value, returning each code point as a String value. The following steps are taken:</p>
         <emu-alg>
           1. Let _O_ be ? RequireObjectCoercible(*this* value).
@@ -27210,7 +27288,7 @@ Date.parse(x.toLocaleString())
 
   <!-- es6num="21.2" -->
   <emu-clause id="sec-regexp-regular-expression-objects">
-    <h1>RegExp (_Regular_ _Expression_) Objects</h1>
+    <h1>RegExp (Regular Expression) Objects</h1>
     <p>A RegExp object contains a regular expression and the associated flags.</p>
     <emu-note>
       <p>The form and functionality of regular expressions is modelled after the regular expression facility in the Perl 5 programming language.</p>
@@ -27568,7 +27646,7 @@ Date.parse(x.toLocaleString())
             <p>Step 5 of the RepeatMatcher clears |Atom|'s captures each time |Atom| is repeated. We can see its behaviour in the regular expression</p>
             <pre><code class="javascript">/(z)((a+)?(b+)?(c))*/.exec("zaacbbbcac")</code></pre>
             <p>which returns the array</p>
-            <pre><code class="javascript">["zaacbbbcac", "z", "ac", "a", undefined, "c"]</pre></code>
+            <pre><code class="javascript">["zaacbbbcac", "z", "ac", "a", undefined, "c"]</code></pre>
             <p>and not</p>
             <pre><code class="javascript">["zaacbbbcac", "z", "ac", "a", "bbb", "c"]</code></pre>
             <p>because each iteration of the outermost `*` clears all captured Strings contained in the quantified |Atom|, which in this case includes capture Strings numbered 2, 3, 4, and 5.</p>
@@ -28634,7 +28712,7 @@ Date.parse(x.toLocaleString())
         </emu-alg>
         <p>The production <emu-grammar>ClassEscape :: `-`</emu-grammar> evaluates as follows:</p>
         <emu-alg>
-          1. Return the CharSet containing the single character - U+002D (HYPEN-MINUS).
+          1. Return the CharSet containing the single character - U+002D (HYPHEN-MINUS).
         </emu-alg>
         <p>The production <emu-grammar>ClassEscape :: CharacterEscape</emu-grammar> evaluates as follows:</p>
         <emu-alg>
@@ -29111,9 +29189,9 @@ Date.parse(x.toLocaleString())
         <h1>RegExp.prototype [ @@split ] ( _string_, _limit_ )</h1>
         <emu-note>
           <p>Returns an Array object into which substrings of the result of converting _string_ to a String have been stored. The substrings are determined by searching from left to right for matches of the *this* value regular expression; these occurrences are not part of any substring in the returned array, but serve to divide up the String value.</p>
-          <p>The *this* value may be an empty regular expression or a regular expression that can match an empty String. In this case, regular expression does not match the empty substring at the beginning or end of the input String, nor does it match the empty substring at the end of the previous separator match. (For example, if the regular expression matches the empty String, the String is split up into individual code unit elements; the length of the result array equals the length of the String, and each substring contains one code unit.) Only the first match at a given index of the *this* String is considered, even if backtracking could yield a non-empty-substring match at that index. (For example, `/a*?/[Symbol.split]("ab")` evaluates to the array `["a","b"]`, while `/a*/[Symbol.split]("ab")` evaluates to the array `["","b"]`.)</p>
+          <p>The *this* value may be an empty regular expression or a regular expression that can match an empty String. In this case, the regular expression does not match the empty substring at the beginning or end of the input String, nor does it match the empty substring at the end of the previous separator match. (For example, if the regular expression matches the empty String, the String is split up into individual code unit elements; the length of the result array equals the length of the String, and each substring contains one code unit.) Only the first match at a given index of the String is considered, even if backtracking could yield a non-empty-substring match at that index. (For example, `/a*?/[Symbol.split]("ab")` evaluates to the array `["a","b"]`, while `/a*/[Symbol.split]("ab")` evaluates to the array `["","b"]`.)</p>
           <p>If the _string_ is (or converts to) the empty String, the result depends on whether the regular expression can match the empty String. If it can, the result array contains no elements. Otherwise, the result array contains one element, which is the empty String.</p>
-          <p>If the regular expression that contains capturing parentheses, then each time _separator_ is matched the results (including any *undefined* results) of the capturing parentheses are spliced into the output array. For example,</p>
+          <p>If the regular expression contains capturing parentheses, then each time _separator_ is matched the results (including any *undefined* results) of the capturing parentheses are spliced into the output array. For example,</p>
           <pre><code class="javascript">/&lt;(\/)?([^&lt;&gt;]+)&gt;/[Symbol.split]("A&lt;B&gt;bold&lt;/B&gt;and&lt;CODE&gt;coded&lt;/CODE&gt;")</code></pre>
           <p>evaluates to the array</p>
           <pre><code class="javascript">["A",undefined,"B","bold","/","B","and",undefined,"CODE","coded","/","CODE",""]</code></pre>
@@ -29358,6 +29436,9 @@ Date.parse(x.toLocaleString())
             1. Let _iterator_ be ? GetIterator(_items_, _usingIterator_).
             1. Let _k_ be 0.
             1. Repeat
+              1. If _k_ &ge; 2<sup>53</sup>-1, then
+                1. Let _error_ be Completion{[[type]]: ~throw~, [[value]]: a newly created *TypeError* object, [[target]]:~empty~}.
+                1. Return ? IteratorClose(_iterator_, _error_).
               1. Let _Pk_ be ! ToString(_k_).
               1. Let _next_ be ? IteratorStep(_iterator_).
               1. If _next_ is *false*, then
@@ -29372,7 +29453,7 @@ Date.parse(x.toLocaleString())
               1. Let _defineStatus_ be CreateDataPropertyOrThrow(_A_, _Pk_, _mappedValue_).
               1. If _defineStatus_ is an abrupt completion, return ? IteratorClose(_iterator_, _defineStatus_).
               1. Increase _k_ by 1.
-          1. Note: _items_ is not an Iterable so assume it is an array-like object.
+          1. NOTE: _items_ is not an Iterable so assume it is an array-like object.
           1. Let _arrayLike_ be ! ToObject(_items_).
           1. Let _len_ be ? ToLength(? Get(_arrayLike_, `"length"`)).
           1. If IsConstructor(_C_) is *true*, then
@@ -29777,12 +29858,12 @@ Date.parse(x.toLocaleString())
           1. Let _len_ be ? ToLength(? Get(_O_, `"length"`)).
           1. If _len_ is 0, return *false*.
           1. Let _n_ be ? ToInteger(_fromIndex_). (If _fromIndex_ is *undefined*, this step produces the value 0.)
-          1. If _n_ ≥ 0, then
+          1. If _n_ &ge; 0, then
             1. Let _k_ be _n_.
-          1. Else _n_ < 0,
+          1. Else _n_ &lt; 0,
             1. Let _k_ be _len_ + _n_.
-            1. If _k_ < 0, let _k_ be 0.
-          1. Repeat, while _k_ < _len_
+            1. If _k_ &lt; 0, let _k_ be 0.
+          1. Repeat, while _k_ &lt; _len_
             1. Let _elementK_ be the result of ? Get(_O_, ! ToString(_k_)).
             1. If SameValueZero(_searchElement_, _elementK_) is *true*, return *true*.
             1. Increase _k_ by 1.
@@ -29790,11 +29871,11 @@ Date.parse(x.toLocaleString())
         </emu-alg>
 
         <emu-note>
-           The `includes` function is intentionally generic; it does not require that its *this* value be an Array object. Therefore it can be transferred to other kinds of objects for use as a method.
+          <p>The `includes` function is intentionally generic; it does not require that its *this* value be an Array object. Therefore it can be transferred to other kinds of objects for use as a method.</p>
         </emu-note>
 
         <emu-note>
-          The `includes` method intentionally differs from the similar `indexOf` method in two ways. First, it uses the SameValueZero algorithm, instead of Strict Equality Comparison, allowing it to detect *NaN* array elements. Second, it does not skip missing array elements, instead treating them as *undefined*.
+          <p>The `includes` method intentionally differs from the similar `indexOf` method in two ways. First, it uses the SameValueZero algorithm, instead of Strict Equality Comparison, allowing it to detect *NaN* array elements. Second, it does not skip missing array elements, instead treating them as *undefined*.</p>
         </emu-note>
       </emu-clause>
 
@@ -29813,7 +29894,7 @@ Date.parse(x.toLocaleString())
           1. Let _n_ be ? ToInteger(_fromIndex_). (If _fromIndex_ is *undefined*, this step produces the value 0.)
           1. If _n_ &ge; _len_, return -1.
           1. If _n_ &ge; 0, then
-            1. Let _k_ be _n_.
+            1. If _n_ is -0, let _k_ be +0; else let _k_ be _n_.
           1. Else _n_ &lt; 0,
             1. Let _k_ be _len_ + _n_.
             1. If _k_ &lt; 0, let _k_ be 0.
@@ -29883,7 +29964,8 @@ Date.parse(x.toLocaleString())
           1. Let _len_ be ? ToLength(? Get(_O_, `"length"`)).
           1. If _len_ is 0, return -1.
           1. If argument _fromIndex_ was passed, let _n_ be ? ToInteger(_fromIndex_); else let _n_ be _len_-1.
-          1. If _n_ &ge; 0, let _k_ be min(_n_, _len_ - 1).
+          1. If _n_ &ge; 0, then
+            1. If _n_ is -0, let _k_ be +0; else let _k_ be min(_n_, _len_ - 1).
           1. Else _n_ &lt; 0,
             1. Let _k_ be _len_ + _n_.
           1. Repeat, while _k_ &ge; 0
@@ -30329,8 +30411,10 @@ Date.parse(x.toLocaleString())
               1. Return _v_.
             1. Let _xString_ be ? ToString(_x_).
             1. Let _yString_ be ? ToString(_y_).
-            1. If _xString_ &lt; _yString_, return -1.
-            1. If _xString_ &gt; _yString_, return 1.
+            1. Let _xSmaller_ be the result of performing Abstract Relational Comparison _xString_ &lt; _yString_.
+            1. If _xSmaller_ is *true*, return -1.
+            1. Let _ySmaller_ be the result of performing Abstract Relational Comparison _yString_ &lt; _xString_.
+            1. If _ySmaller_ is *true*, return 1.
             1. Return +0.
           </emu-alg>
           <emu-note>
@@ -30975,7 +31059,7 @@ Date.parse(x.toLocaleString())
                   1. Let _nextValue_ be ? IteratorValue(_next_).
                   1. Append _nextValue_ to the end of the List _values_.
               1. Return CreateArrayFromList(_values_).
-            1. Note: _items_ is not an Iterable so assume it is already an array-like object.
+            1. NOTE: _items_ is not an Iterable so assume it is already an array-like object.
             1. Return ! ToObject(_items_).
           </emu-alg>
         </emu-clause>
@@ -31107,7 +31191,7 @@ Date.parse(x.toLocaleString())
         <p>The following steps are taken:</p>
         <emu-alg>
           1. Let _O_ be the *this* value.
-          1. Let _valid_ be ? ValidateTypedArray(_O_).
+          1. Perform ? ValidateTypedArray(_O_).
           1. Return CreateArrayIterator(_O_, `"key+value"`).
         </emu-alg>
       </emu-clause>
@@ -31133,7 +31217,7 @@ Date.parse(x.toLocaleString())
         <p>When the `filter` method is called with one or two arguments, the following steps are taken:</p>
         <emu-alg>
           1. Let _O_ be the *this* value.
-          1. Let _valid_ be ? ValidateTypedArray(_O_).
+          1. Perform ? ValidateTypedArray(_O_).
           1. Let _len_ be the value of _O_'s [[ArrayLength]] internal slot.
           1. If IsCallable(_callbackfn_) is *false*, throw a *TypeError* exception.
           1. If _thisArg_ was supplied, let _T_ be _thisArg_; else let _T_ be *undefined*.
@@ -31189,7 +31273,7 @@ Date.parse(x.toLocaleString())
       <emu-clause id="sec-%typedarray%.prototype.includes">
         <h1>%TypedArray%.prototype.includes ( _searchElement_ [ , _fromIndex_ ] )</h1>
 
-        <p>`%TypedArray%.prototype.includes` is a distinct function that implements the same algorithm as `Array.prototype.includes` as defined in <emu-xref href="#sec-array.prototype.includes"></emu-xref> except that the *this* object’s [[ArrayLength]] internal slot is accessed in place of performing a [[Get]] of `"length"`. The implementation of the algorithm may be optimized with the knowledge that the *this* value is an object that has a fixed length and whose integer indexed properties are not sparse. However, such optimization must not introduce any observable changes in the specified behaviour of the algorithm.</p>
+        <p>`%TypedArray%.prototype.includes` is a distinct function that implements the same algorithm as `Array.prototype.includes` as defined in <emu-xref href="#sec-array.prototype.includes"></emu-xref> except that the *this* object's [[ArrayLength]] internal slot is accessed in place of performing a [[Get]] of `"length"`. The implementation of the algorithm may be optimized with the knowledge that the *this* value is an object that has a fixed length and whose integer indexed properties are not sparse. However, such optimization must not introduce any observable changes in the specified behaviour of the algorithm.</p>
 
         <p>This function is not generic. ValidateTypedArray is applied to the *this* value prior to evaluating the algorithm. If its result is an abrupt completion that exception is thrown instead of evaluating the algorithm.</p>
 
@@ -31208,7 +31292,7 @@ Date.parse(x.toLocaleString())
         <p>The following steps are taken:</p>
         <emu-alg>
           1. Let _O_ be the *this* value.
-          1. Let _valid_ be ? ValidateTypedArray(_O_).
+          1. Perform ? ValidateTypedArray(_O_).
           1. Return CreateArrayIterator(_O_, `"key"`).
         </emu-alg>
       </emu-clause>
@@ -31244,7 +31328,7 @@ Date.parse(x.toLocaleString())
         <p>When the `map` method is called with one or two arguments, the following steps are taken:</p>
         <emu-alg>
           1. Let _O_ be the *this* value.
-          1. Let _valid_ be ? ValidateTypedArray(_O_).
+          1. Perform ? ValidateTypedArray(_O_).
           1. Let _len_ be the value of _O_'s [[ArrayLength]] internal slot.
           1. If IsCallable(_callbackfn_) is *false*, throw a *TypeError* exception.
           1. If _thisArg_ was supplied, let _T_ be _thisArg_; else let _T_ be *undefined*.
@@ -31382,7 +31466,7 @@ Date.parse(x.toLocaleString())
         <p>The interpretation and use of the arguments of %TypedArray%`.prototype.slice` are the same as for `Array.prototype.slice` as defined in <emu-xref href="#sec-array.prototype.slice"></emu-xref>. The following steps are taken:</p>
         <emu-alg>
           1. Let _O_ be the *this* value.
-          1. Let _valid_ be ? ValidateTypedArray(_O_).
+          1. Perform ? ValidateTypedArray(_O_).
           1. Let _len_ be the value of _O_'s [[ArrayLength]] internal slot.
           1. Let _relativeStart_ be ? ToInteger(_start_).
           1. If _relativeStart_ &lt; 0, let _k_ be max((_len_ + _relativeStart_), 0); else let _k_ be min(_relativeStart_, _len_).
@@ -31412,7 +31496,7 @@ Date.parse(x.toLocaleString())
             1. Let _targetByteIndex_ be _A_'s [[ByteOffset]] internal slot.
             1. Let _srcByteIndex_ be (_k_ &times; _elementSize_) + _srcByteOffet_.
             1. Let _limit_ be _targetByteIndex_ + _count_ &times; _elementSize_.
-            1. Repeat, while _targetByteIndex_ < _limit_
+            1. Repeat, while _targetByteIndex_ &lt; _limit_
               1. Let _value_ be GetValueFromBuffer(_srcBuffer_, _srcByteIndex_, `"Uint8"`).
               1. Perform SetValueInBuffer(_targetBuffer_, _targetByteIndex_, `"Uint8"`, _value_).
               1. Increase _srcByteIndex_ by 1.
@@ -31512,7 +31596,7 @@ Date.parse(x.toLocaleString())
         <p>The following steps are taken:</p>
         <emu-alg>
           1. Let _O_ be the *this* value.
-          1. Let _valid_ be ? ValidateTypedArray(_O_).
+          1. Perform ? ValidateTypedArray(_O_).
           1. Return CreateArrayIterator(_O_, `"value"`).
         </emu-alg>
       </emu-clause>
@@ -31724,7 +31808,7 @@ Date.parse(x.toLocaleString())
           1. Let _newTypedArray_ be ? Construct(_constructor_, _argumentList_).
           1. Perform ? ValidateTypedArray(_newTypedArray_).
           1. If _argumentList_ is a List of a single Number,
-            1. If the value of _newTypedArray_'s [[ArrayLength]] internal slot < _argumentList_[0], throw a *TypeError* exception.
+            1. If the value of _newTypedArray_'s [[ArrayLength]] internal slot &lt; _argumentList_[0], throw a *TypeError* exception.
           1. Return _newTypedArray_.
         </emu-alg>
       </emu-clause>
@@ -31888,7 +31972,7 @@ Date.parse(x.toLocaleString())
           1. Return *undefined*.
         </emu-alg>
         <emu-note>
-          <p>The existing [[MapData]] List is preserved because there may be existing MapIterator objects that are suspended midway through iterating over that List.</p>
+          <p>The existing [[MapData]] List is preserved because there may be existing Map Iterator objects that are suspended midway through iterating over that List.</p>
         </emu-note>
       </emu-clause>
 
@@ -32041,7 +32125,7 @@ Date.parse(x.toLocaleString())
 
       <!-- es6num="23.1.3.12" -->
       <emu-clause id="sec-map.prototype-@@iterator">
-        <h1>Map.prototype [ @@iterator ]( )</h1>
+        <h1>Map.prototype [ @@iterator ] ( )</h1>
         <p>The initial value of the @@iterator property is the same function object as the initial value of the `entries` property.</p>
       </emu-clause>
 
@@ -32268,7 +32352,7 @@ Date.parse(x.toLocaleString())
           1. Return *undefined*.
         </emu-alg>
         <emu-note>
-          <p>The existing [[MapData]] List is preserved because there may be existing MapIterator objects that are suspended midway through iterating over that List.</p>
+          <p>The existing [[SetData]] List is preserved because there may be existing Set Iterator objects that are suspended midway through iterating over that List.</p>
         </emu-note>
       </emu-clause>
 
@@ -33410,7 +33494,7 @@ Date.parse(x.toLocaleString())
 
       <!-- es6num="24.2.4.21" -->
       <emu-clause id="sec-dataview.prototype-@@tostringtag">
-        <h1>DataView.prototype[ @@toStringTag ]</h1>
+        <h1>DataView.prototype [ @@toStringTag ]</h1>
         <p>The initial value of the @@toStringTag property is the String value `"DataView"`.</p>
         <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
       </emu-clause>
@@ -33984,7 +34068,7 @@ my_text = JSON.stringify(a); // This must throw a TypeError.
     <h1>GeneratorFunction Objects</h1>
     <p>Generator Function objects are functions that are usually created by evaluating |GeneratorDeclaration|, |GeneratorExpression|, and |GeneratorMethod| syntactic productions. They may also be created by calling the %GeneratorFunction% intrinsic.</p>
     <emu-figure id="figure-2" caption="Generator Objects Relationships" informative>
-      <img alt="A staggering variety of boxes and arrows." height="958" src="figure-2.png" width="968">
+      <img alt="A staggering variety of boxes and arrows." height="958" src="img/figure-2.png" width="968">
     </emu-figure>
 
     <!-- es6num="25.2.1" -->
@@ -35305,7 +35389,7 @@ my_text = JSON.stringify(a); // This must throw a TypeError.
     <emu-prodref name=FutureReservedWord></emu-prodref>
     <p>`await` is only treated as a |FutureReservedWord| when |Module| is the goal symbol of the syntactic grammar.</p>
     <p>The following tokens are also considered to be |FutureReservedWords| when parsing strict mode code:</p>
-    <p><emu-t>implements</emu-t> &nbsp;<emu-t>package</emu-t> &nbsp;<emu-t>protected</emu-t><br />
+    <p><emu-t>implements</emu-t> &nbsp;<emu-t>package</emu-t> &nbsp;<emu-t>protected</emu-t><br>
     <emu-t>interface</emu-t> &nbsp;<emu-t>private</emu-t> &nbsp;<emu-t>public</emu-t>
     </p>
     <p>&nbsp;</p>
@@ -35405,8 +35489,9 @@ my_text = JSON.stringify(a); // This must throw a TypeError.
     <emu-prodref name=Arguments></emu-prodref>
     <emu-prodref name=ArgumentList></emu-prodref>
     <emu-prodref name=LeftHandSideExpression></emu-prodref>
-    <emu-prodref name=PostfixExpression></emu-prodref>
+    <emu-prodref name=UpdateExpression></emu-prodref>
     <emu-prodref name=UnaryExpression></emu-prodref>
+    <emu-prodref name=ExponentiationExpression></emu-prodref>
     <emu-prodref name=MultiplicativeExpression></emu-prodref>
     <emu-prodref name=MultiplicativeOperator></emu-prodref>
     <emu-prodref name=AdditiveExpression></emu-prodref>
@@ -35565,7 +35650,7 @@ my_text = JSON.stringify(a); // This must throw a TypeError.
     <emu-prodref name=SignedInteger></emu-prodref>
     <emu-prodref name=HexIntegerLiteral></emu-prodref>
     <emu-prodref name=HexDigit></emu-prodref>
-    <p>All grammar symbols not explicitly defined by the |StringNumericLiteral| grammar have the definitions used in the <emu-xref href="#sec-literals-numeric-literals">Lexical Grammar for numeric literals</a>.</p>
+    <p>All grammar symbols not explicitly defined by the |StringNumericLiteral| grammar have the definitions used in the <emu-xref href="#sec-literals-numeric-literals">Lexical Grammar for numeric literals</emu-xref>.</p>
   </emu-annex>
 
   <!-- es6num="A.7" -->
@@ -35838,42 +35923,13 @@ my_text = JSON.stringify(a); // This must throw a TypeError.
       <h2>Syntax</h2>
       <emu-grammar>
         Term[U] ::
-          [~U] ExtendedTerm
           [+U] Assertion[U]
           [+U] Atom[U]
           [+U] Atom[U] Quantifier
-
-        ExtendedTerm ::
-          Assertion
-          AtomNoBrace Quantifier
-          Atom
-          QuantifiableAssertion Quantifier
-
-        AtomNoBrace ::
-          PatternCharacterNoBrace
-          `.`
-          `\` AtomEscape
-          CharacterClass
-          `(` Disjunction `)`
-          `(` `?` `:` Disjunction `)`
-
-        Atom[U] ::
-          PatternCharacter
-          `.`
-          `\` AtomEscape[?U]
-          CharacterClass[?U]
-          `(` Disjunction[?U] `)`
-          `(` `?` `:` Disjunction[?U] `)`
-
-        PatternCharacterNoBrace ::
-          SourceCharacter but not one of `^` `$` `\` `.` `*` `+` `?` `(` `)` `[` `]` `{` `}` `|`
-
-        PatternCharacter ::
-          SourceCharacter but not one of `^` `$` `\` `.` `*` `+` `?` `(` `)` `[` `]` `|`
-
-        QuantifiableAssertion ::
-          `(` `?` `=` Disjunction `)`
-          `(` `?` `!` Disjunction `)`
+          [~U] QuantifiableAssertion Quantifier
+          [~U] Assertion
+          [~U] ExtendedAtom Quantifier
+          [~U] ExtendedAtom
 
         Assertion[U] ::
           `^`
@@ -35883,6 +35939,27 @@ my_text = JSON.stringify(a); // This must throw a TypeError.
           [+U] `(` `?` `=` Disjunction[U] `)`
           [+U] `(` `?` `!` Disjunction[U] `)`
           [~U] QuantifiableAssertion
+
+        QuantifiableAssertion ::
+          `(` `?` `=` Disjunction `)`
+          `(` `?` `!` Disjunction `)`
+
+        ExtendedAtom ::
+          `.`
+          `\` AtomEscape
+          CharacterClass
+          `(` Disjunction `)`
+          `(` `?` `:` Disjunction `)`
+          InvalidBracedQuantifier
+          ExtendedPatternCharacter
+
+        InvalidBracedQuantifier ::
+          `{` DecimalDigits `}`
+          `{` DecimalDigits `,` `}`
+          `{` DecimalDigits `,` DecimalDigits `}`
+
+        ExtendedPatternCharacter ::
+          SourceCharacter but not one of `^` `$` `.` `*` `+` `?` `(` `)` `[` `|`
 
         AtomEscape[U] ::
           [+U] DecimalEscape
@@ -35922,27 +35999,31 @@ my_text = JSON.stringify(a); // This must throw a TypeError.
           ClassAtomNoDash[?U]
 
         ClassAtomNoDash[U] ::
-          SourceCharacter but not one of `\` or `]` or `-`
           `\` ClassEscape[?U]
+          SourceCharacter but not one of `\` or `]` or `-`
 
         ClassAtomInRange ::
           `-`
           ClassAtomNoDashInRange
 
         ClassAtomNoDashInRange ::
+          `\` ClassEscape
           SourceCharacter but not one of `\` or `]` or `-`
-          `\` ClassEscape but only if ClassEscape evaluates to a CharSet with exactly one character
-          `\` IdentityEscape
 
         ClassEscape[U] ::
+          `b`
           [+U] DecimalEscape
           [+U] CharacterEscape[U]
           [+U] CharacterClassEscape
           [+U] `-`
-          [~U] DecimalEscape
-          `b`
+          [~U] DecimalEscape but only if the integer value of DecimalEscape is 0
           [~U] CharacterClassEscape
+          [~U] `c` ClassControlLetter
           [~U] CharacterEscape
+
+        ClassControlLetter ::
+          DecimalDigit
+          `_`
       </emu-grammar>
       <emu-note>
         <p>When the same left hand sides occurs with both [+U] and [\~U] guards it is to control the disambiguation priority.</p>
@@ -35952,25 +36033,88 @@ my_text = JSON.stringify(a); // This must throw a TypeError.
       <emu-annex id="sec-regular-expression-patterns-semantics">
         <h1>Pattern Semantics</h1>
         <p>The semantics of <emu-xref href="#sec-pattern-semantics"></emu-xref> is extended as follows:</p>
-        <p>Within <emu-xref href="#sec-term"></emu-xref> reference to &ldquo;<emu-grammar>Atom :: `(` Disjunction `)`</emu-grammar> &rdquo; are to be interpreted as meaning &ldquo;<emu-grammar>Atom :: `(` Disjunction `)`</emu-grammar> &rdquo; or &ldquo;<emu-grammar>AtomNoBrace :: `(` Disjunction `)`</emu-grammar> &rdquo;.</p>
-        <p>Term (<emu-xref href="#sec-term"></emu-xref>) includes the following additional evaluation rule:</p>
+        <p>Within <emu-xref href="#sec-term"></emu-xref> reference to &ldquo;<emu-grammar>Atom :: `(` Disjunction `)`</emu-grammar> &rdquo; are to be interpreted as meaning &ldquo;<emu-grammar>Atom :: `(` Disjunction `)`</emu-grammar> &rdquo; or &ldquo;<emu-grammar>ExtendedAtom :: `(` Disjunction `)`</emu-grammar> &rdquo;.</p>
+
+        <p>Term (<emu-xref href="#sec-term"></emu-xref>) includes the following additional evaluation rules:</p>
         <p>The production <emu-grammar>Term :: QuantifiableAssertion Quantifier</emu-grammar> evaluates the same as the production <emu-grammar>Term :: Atom Quantifier</emu-grammar> but with |QuantifiableAssertion| substituted for |Atom|.</p>
-        <p>Atom (<emu-xref href="#sec-atom"></emu-xref>) evaluation rules for the |Atom| productions except for <emu-grammar>Atom :: PatternCharacter</emu-grammar> are also used for the |AtomNoBrace| productions, but with |AtomNoBrace| substituted for |Atom|. The following evaluation rule is also added:</p>
-        <p>The production <emu-grammar>AtomNoBrace :: PatternCharacterNoBrace</emu-grammar> evaluates as follows:</p>
+        <p>The production <emu-grammar>Term :: ExtendedAtom Quantifier</emu-grammar> evaluates the same as the production <emu-grammar>Term :: Atom Quantifier</emu-grammar> but with |ExtendedAtom| substituted for |Atom|.</p>
+        <p>The production <emu-grammar>Term :: ExtendedAtom</emu-grammar> evaluates the same as the production <emu-grammar>Term :: Atom</emu-grammar> but with |ExtendedAtom| substituted for |Atom|.</p>
+
+        <p>Assertion (<emu-xref href="#sec-assertion"></emu-xref>) includes the following additional evaluation rule:</p>
+        <p>The production <emu-grammar>Assertion :: QuantifiableAssertion</emu-grammar> evaluates by evaluating |QuantifiableAssertion| to obtain a Matcher and returning that Matcher.</p>
+
+        <p>Assertion (<emu-xref href="#sec-assertion"></emu-xref>) evaluation rules for the <emu-grammar>Assertion :: `(` `?` `=` Disjunction `)`</emu-grammar> and <emu-grammar>Assertion :: `(` `?` `!` Disjunction `)`</emu-grammar> productions are also used for the |QuantifiableAssertion| productions, but with |QuantifiableAssertion| substituted for |Assertion|.</p>
+
+        <p>Atom (<emu-xref href="#sec-atom"></emu-xref>) evaluation rules for the |Atom| productions except for <emu-grammar>Atom :: PatternCharacter</emu-grammar> are also used for the |ExtendedAtom| productions, but with |ExtendedAtom| substituted for |Atom|. The following evaluation rules are also added:</p>
+        <p>The production <emu-grammar>ExtendedAtom :: InvalidBracedQuantifier</emu-grammar> evaluates as follows:</p>
         <emu-alg>
-          1. Let _ch_ be the character represented by |PatternCharacterNoBrace|.
+          1. Throw a *SyntaxError* exception.
+        </emu-alg>
+        <p>The production <emu-grammar>ExtendedAtom :: ExtendedPatternCharacter</emu-grammar> evaluates as follows:</p>
+        <emu-alg>
+          1. Let _ch_ be the character represented by |ExtendedPatternCharacter|.
           1. Let _A_ be a one-element CharSet containing the character _ch_.
           1. Call CharacterSetMatcher(_A_, *false*) and return its Matcher result.
         </emu-alg>
+
         <p>CharacterEscape (<emu-xref href="#sec-characterescape"></emu-xref>) includes the following additional evaluation rule:</p>
         <p>The production <emu-grammar>CharacterEscape :: LegacyOctalEscapeSequence</emu-grammar> evaluates by evaluating the SV of the |LegacyOctalEscapeSequence| (see <emu-xref href="#sec-additional-syntax-string-literals"></emu-xref>) and returning its character result.</p>
+
+        <p>NonemptyClassRanges (<emu-xref href="#sec-nonemptyclassranges"></emu-xref>) includes the following additional evaluation rule:</p>
+        <p>The production <emu-grammar>NonemptyClassRanges :: ClassAtomInRange `-` ClassAtomInRange ClassRanges</emu-grammar> evaluates as follows:</p>
+        <emu-alg>
+          1. Evaluate the first |ClassAtomInRange| to obtain a CharSet _A_.
+          1. Evaluate the second |ClassAtomInRange| to obtain a CharSet _B_.
+          1. Evaluate |ClassRanges| to obtain a CharSet _C_.
+          1. Call CharacterRangeOrUnion(_A_, _B_) and let _D_ be the resulting CharSet.
+          1. Return the union of CharSets _D_ and _C_.
+        </emu-alg>
+
+        <p>NonemptyClassRangesNoDash (<emu-xref href="#sec-nonemptyclassrangesnodash"></emu-xref>) includes the following additional evaluation rule:</p>
+        <p>The production <emu-grammar>NonemptyClassRangesNoDash :: ClassAtomNoDashInRange `-` ClassAtomInRange ClassRanges</emu-grammar> evaluates as follows:</p>
+        <emu-alg>
+          1. Evaluate |ClassAtomNoDashInRange| to obtain a CharSet _A_.
+          1. Evaluate |ClassAtomInRange| to obtain a CharSet _B_.
+          1. Evaluate |ClassRanges| to obtain a CharSet _C_.
+          1. Call CharacterRangeOrUnion(_A_, _B_) and let _D_ be the resulting CharSet.
+          1. Return the union of CharSets _D_ and _C_.
+        </emu-alg>
+
         <p>ClassAtom (<emu-xref href="#sec-classatom"></emu-xref>) includes the following additional evaluation rules:</p>
         <p>The production <emu-grammar>ClassAtomInRange :: `-`</emu-grammar> evaluates by returning the CharSet containing the one character `-`.</p>
         <p>The production <emu-grammar>ClassAtomInRange :: ClassAtomNoDashInRange</emu-grammar> evaluates by evaluating |ClassAtomNoDashInRange| to obtain a CharSet and returning that CharSet.</p>
+
         <p>ClassAtomNoDash (<emu-xref href="#sec-classatomnodash"></emu-xref>) includes the following additional evaluation rules:</p>
-        <p>The production <emu-grammar>ClassAtomNoDashInRange :: SourceCharacter but not one of `\` or `]` or `-`</emu-grammar> evaluates by returning a one-element CharSet containing the character represented by |SourceCharacter|.</p>
-        <p>The production <emu-grammar>ClassAtomNoDashInRange :: `\` ClassEscape</emu-grammar> but only if&hellip;, evaluates by evaluating |ClassEscape| to obtain a CharSet and returning that CharSet.</p>
-        <p>The production <emu-grammar>ClassAtomNoDashInRange :: `\` IdentityEscape</emu-grammar> evaluates by returning the character represented by |IdentityEscape|.</p>
+        <p>The production <emu-grammar>ClassAtomNoDash :: SourceCharacter but not one of `]` or `-`</emu-grammar> evaluates by returning a one-element CharSet containing the character represented by |SourceCharacter|.</p>
+        <p>The production <emu-grammar>ClassAtomNoDashInRange :: `\` ClassEscape</emu-grammar> evaluates by evaluating |ClassEscape| to obtain a CharSet and returning that CharSet.</p>
+        <p>The production <emu-grammar>ClassAtomNoDashInRange :: SourceCharacter but not one of `]` or `-`</emu-grammar> evaluates by returning a one-element CharSet containing the character represented by |SourceCharacter|.</p>
+
+        <p>ClassEscape (<emu-xref href="#sec-classescape"></emu-xref>) includes the following additional evaluation rules:</p>
+        <p>The production <emu-grammar>ClassEscape :: DecimalEscape but only if &hellip;</emu-grammar> evaluates as follows:</p>
+        <emu-alg>
+          1. Evaluate |DecimalEscape| to obtain an EscapeValue _E_.
+          1. Assert: _E_ is a character.
+          1. Let _ch_ be _E_'s character.
+          1. Return the one-element CharSet containing the character _ch_.
+        </emu-alg>
+        <p>The production <emu-grammar>ClassEscape :: `c` ClassControlLetter</emu-grammar> evaluates as follows:</p>
+        <emu-alg>
+          1. Let _ch_ be the character matched by |ClassControlLetter|.
+          1. Let _i_ be _ch_'s character value.
+          1. Let _j_ be the remainder of dividing _i_ by 32.
+          1. Return the character whose character value is _j_.
+        </emu-alg>
+
+        <emu-annex id="sec-runtime-semantics-characterrangeorunion-abstract-operation" aoid="CharacterRangeOrUnion">
+          <h1>Runtime Semantics: CharacterRangeOrUnion Abstract Operation</h1>
+          <p>The abstract operation CharacterRangeOrUnion takes two CharSet parameters _A_ and _B_ and performs the following steps:</p>
+          <emu-alg>
+            1. If _A_ does not contain exactly one character or _B_ does not contain exactly one character, then
+              1. Let _C_ be the CharSet containing the single character - U+002D (HYPHEN-MINUS).
+              1. Return the union of CharSets _A_, _B_ and _C_.
+            1. Return CharacterRange(_A_, _B_).
+          </emu-alg>
+        </emu-annex>
       </emu-annex>
     </emu-annex>
   </emu-annex>
@@ -36378,7 +36522,7 @@ my_text = JSON.stringify(a); // This must throw a TypeError.
     <!-- es6num="B.3.1" -->
     <emu-annex id="sec-__proto__-property-names-in-object-initializers">
       <h1>__proto__ Property Names in Object Initializers</h1>
-      <p>The following Early Error rule is added to those in <emu-xref href="#sec-object-initializer-static-semantics-early-errors"></emu-xref>:</p>
+      <p>The following Early Error rule is added to those in <emu-xref href="#sec-object-initializer-static-semantics-early-errors"></emu-xref>. When |ObjectLiteral| appears in a context where |ObjectAssignmentPattern| is required the Early Error rule is <b>not</b> applied. In addition, it is not applied when initially parsing a |CoverParenthesizedExpressionAndArrowParameterList|.</p>
       <emu-grammar>
         ObjectLiteral : `{` PropertyDefinitionList `}`
 
@@ -36433,7 +36577,7 @@ my_text = JSON.stringify(a); // This must throw a TypeError.
       <p>Prior to ECMAScript 2015, the ECMAScript specification did not define the occurrence of a |FunctionDeclaration| as an element of a |Block| statement's |StatementList|. However, support for that form of |FunctionDeclaration| was an allowable extension and most browser-hosted ECMAScript implementations permitted them. Unfortunately, the semantics of such declarations differ among those implementations. Because of these semantic differences, existing web ECMAScript code that uses |Block| level function declarations is only portable among browser implementation if the usage only depends upon the semantic intersection of all of the browser implementations for such declarations. The following are the use cases that fall within that intersection semantics:</p>
       <ol>
         <li>
-          A function is declared and only referenced within a single block
+          <p>A function is declared and only referenced within a single block</p>
           <ul>
             <li>
               A |FunctionDeclaration| whose |BindingIdentifier| is the name _f_ occurs exactly once within the function code of an enclosing function _g_ and that declaration is nested within a |Block|.
@@ -36447,7 +36591,7 @@ my_text = JSON.stringify(a); // This must throw a TypeError.
           </ul>
         </li>
         <li>
-          A function is declared and possibly used within a single |Block| but also referenced by an inner function definition that is not contained within that same |Block|.
+          <p>A function is declared and possibly used within a single |Block| but also referenced by an inner function definition that is not contained within that same |Block|.</p>
           <ul>
             <li>
               A |FunctionDeclaration| whose |BindingIdentifier| is the name _f_ occurs exactly once within the function code of an enclosing function _g_ and that declaration is nested within a |Block|.
@@ -36467,7 +36611,7 @@ my_text = JSON.stringify(a); // This must throw a TypeError.
           </ul>
         </li>
         <li>
-          A function is declared and possibly used within a single block but also referenced within subsequent blocks.
+          <p>A function is declared and possibly used within a single block but also referenced within subsequent blocks.</p>
           <ul>
             <li>
               A |FunctionDeclaration| whose |BindingIdentifier| is the name _f_ occurs exactly once within the function code of an enclosing function _g_ and that declaration is nested within a |Block|.
@@ -36528,9 +36672,9 @@ my_text = JSON.stringify(a); // This must throw a TypeError.
                     1. Perform ? _envRec_.CreateGlobalFunctionBinding(_F_, *undefined*, *false*).
                     1. Append _F_ to _declaredFunctionOrVarNames_.
                   3. When the |FunctionDeclaration| _f_ is evaluated, perform the following steps in place of the |FunctionDeclaration| Evaluation algorithm provided in <emu-xref href="#sec-function-definitions-runtime-semantics-evaluation"></emu-xref>:
-                    1. Let _genv_ be the running execution context’s VariableEnvironment.
+                    1. Let _genv_ be the running execution context's VariableEnvironment.
                     1. Let _genvRec_ be _genv_'s EnvironmentRecord.
-                    1. Let _benv_ be the running execution context’s LexicalEnvironment.
+                    1. Let _benv_ be the running execution context's LexicalEnvironment.
                     1. Let _benvRec_ be _benv_'s EnvironmentRecord.
                     1. Let _fobj_ be ! _benvRec_.GetBindingValue(_F_, *false*).
                     1. Perform ? _genvRec_.SetMutableBinding(_F_, _fobj_, *false*).
@@ -36575,9 +36719,9 @@ my_text = JSON.stringify(a); // This must throw a TypeError.
                         1. Perform ! _varEnvRec_.InitializeBinding(_F_, *undefined*).
                     1. Append _F_ to _declaredFunctionOrVarNames_.
                   2. When the |FunctionDeclaration| _f_ is evaluated, perform the following steps in place of the |FunctionDeclaration| Evaluation algorithm provided in <emu-xref href="#sec-function-definitions-runtime-semantics-evaluation"></emu-xref>:
-                    1. Let _genv_ be the running execution context’s VariableEnvironment.
+                    1. Let _genv_ be the running execution context's VariableEnvironment.
                     1. Let _genvRec_ be _genv_'s EnvironmentRecord.
-                    1. Let _benv_ be the running execution context’s LexicalEnvironment.
+                    1. Let _benv_ be the running execution context's LexicalEnvironment.
                     1. Let _benvRec_ be _benv_'s EnvironmentRecord.
                     1. Let _fobj_ be ! _benvRec_.GetBindingValue(_F_, *false*).
                     1. Perform ? _genvRec_.SetMutableBinding(_F_, _fobj_, *false*).
@@ -36602,7 +36746,7 @@ my_text = JSON.stringify(a); // This must throw a TypeError.
 
     <!-- es6num="B.3.5" -->
     <emu-annex id="sec-variablestatements-in-catch-blocks">
-      <h1>VariableStatements in Catch blocks</h1>
+      <h1>VariableStatements in Catch Blocks</h1>
       <p>The content of subclause <emu-xref href="#sec-try-statement-static-semantics-early-errors"></emu-xref> is replaced with the following:</p>
       <emu-grammar>Catch : `catch` `(` CatchParameter `)` Block</emu-grammar>
       <ul>
@@ -36651,7 +36795,7 @@ my_text = JSON.stringify(a); // This must throw a TypeError.
       Assignment to an undeclared identifier or otherwise unresolvable reference does not create a property in the global object. When a simple assignment occurs within strict mode code, its |LeftHandSideExpression| must not evaluate to an unresolvable Reference. If it does a *ReferenceError* exception is thrown (<emu-xref href="#sec-putvalue"></emu-xref>). The |LeftHandSideExpression| also may not be a reference to a data property with the attribute value {[[Writable]]:*false*}, to an accessor property with the attribute value {[[Set]]:*undefined*}, nor to a non-existent property of an object whose [[Extensible]] internal slot has the value *false*. In these cases a `TypeError` exception is thrown (<emu-xref href="#sec-assignment-operators"></emu-xref>).
     </li>
     <li>
-      The identifier `eval` or `arguments` may not appear as the |LeftHandSideExpression| of an Assignment operator (<emu-xref href="#sec-assignment-operators"></emu-xref>) or of a |PostfixExpression| (<emu-xref href="#sec-postfix-expressions"></emu-xref>) or as the |UnaryExpression| operated upon by a Prefix Increment (<emu-xref href="#sec-prefix-increment-operator"></emu-xref>) or a Prefix Decrement (<emu-xref href="#sec-prefix-decrement-operator"></emu-xref>) operator.
+      The identifier `eval` or `arguments` may not appear as the |LeftHandSideExpression| of an Assignment operator (<emu-xref href="#sec-assignment-operators"></emu-xref>) or of a |UpdateExpression| (<emu-xref href="#sec-update-expressions"></emu-xref>) or as the |UnaryExpression| operated upon by a Prefix Increment (<emu-xref href="#sec-prefix-increment-operator"></emu-xref>) or a Prefix Decrement (<emu-xref href="#sec-prefix-decrement-operator"></emu-xref>) operator.
     </li>
     <li>
       Arguments objects for strict mode functions define non-configurable accessor properties named `"caller"` and `"callee"` which throw a *TypeError* exception on access (<emu-xref href="#sec-addrestrictedfunctionproperties"></emu-xref>).
