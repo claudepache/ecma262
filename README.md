@@ -7,8 +7,6 @@ Proposals follow [this process document](https://tc39.github.io/process-document
 
 |🚀| Proposal                                                                                             | Champion      | Stage
 |---|------------------------------------------------------------------------------------                 |-------------- | ------|------
-| | [Array.prototype.includes](https://github.com/tc39/Array.prototype.includes/) | Domenic Denicola, Rick Waldron | 4
-| | [Exponentiation Operator](https://github.com/rwaldron/exponentiation-operator) | Rick Waldron | 4
 | | [SIMD.JS - SIMD APIs](https://docs.google.com/presentation/d/1MY9NHrHmL7ma7C8dyNXvmYNNGgVmmxXk8ZIiQtPlfH4/edit?usp=sharing) +  [polyfill](http://tc39.github.io/ecmascript_simd/)| John McCutchan, Peter Jensen, Dan Gohman, Daniel Ehrenberg |3      |
 | | [Async Functions](https://github.com/tc39/ecmascript-asyncawait)                                |Brian Terlson    |3      |
 | | [Object.values/Object.entries](https://github.com/tc39/proposal-object-values-entries) | Jordan Harband | 3
@@ -28,7 +26,7 @@ Proposals follow [this process document](https://tc39.github.io/process-document
 | | [String#matchAll](https://github.com/tc39/String.prototype.matchAll) | Jordan Harband | 1
 |🚀|[Callable class constructors](https://github.com/tc39/ecma262/blob/master/workingdocs/callconstructor.md) | Yehuda Katz and Allen Wirfs-Brock | 1
 | | [System.global](https://github.com/tc39/proposal-global) | Jordan Harband | 1
-| | [Async Generator Functions](https://github.com/tc39/proposal-async-iteration) | Kevin Smith | 1
+| | [Asynchronous Iterators](https://github.com/tc39/proposal-async-iteration) | Kevin Smith | 1
 
 
 🚀 means the champion thinks it's ready to advance but has not yet presented to the committee.
